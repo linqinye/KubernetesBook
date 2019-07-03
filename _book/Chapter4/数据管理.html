@@ -1,0 +1,732 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>数据管理 · 编写docker学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Dazzle">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../Chapter5/Helm-k8s的包管理工具.html" />
+    
+    
+    <link rel="prev" href="Health Check.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter1/跑起来.html">
+            
+                <a href="../Chapter1/跑起来.html">
+            
+                    
+                    跑起来
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter2/概念.html">
+            
+                <a href="../Chapter2/概念.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter3/部署Kubernetes Cluster.html">
+            
+                <a href="../Chapter3/部署Kubernetes Cluster.html">
+            
+                    
+                    部署Kubernetes Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="kubernetes架构.html">
+            
+                <a href="kubernetes架构.html">
+            
+                    
+                    kubernetes架构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="部署应用.html">
+            
+                <a href="部署应用.html">
+            
+                    
+                    部署应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="运行应用.html">
+            
+                <a href="运行应用.html">
+            
+                    
+                    运行应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="通过Service访问Pod.html">
+            
+                <a href="通过Service访问Pod.html">
+            
+                    
+                    通过Service访问Pod
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="Rolling Update.html">
+            
+                <a href="Rolling Update.html">
+            
+                    
+                    Rolling Update
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="Health Check.html">
+            
+                <a href="Health Check.html">
+            
+                    
+                    Health Check
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="数据管理.html">
+            
+                <a href="数据管理.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                <a href="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                    
+                    Helm-k8s的包管理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../Chapter6/网络.html">
+            
+                <a href="../Chapter6/网络.html">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../Chapter7/Kubernetes Dashboard.html">
+            
+                <a href="../Chapter7/Kubernetes Dashboard.html">
+            
+                    
+                    Kubernetes Dashboard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../Chapter8/Kubernetes集群监控.html">
+            
+                <a href="../Chapter8/Kubernetes集群监控.html">
+            
+                    
+                    Kubernetes集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../Chapter9/Kubernetes集群日志管理.html">
+            
+                <a href="../Chapter9/Kubernetes集群日志管理.html">
+            
+                    
+                    Kubernetes集群日志管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Chapter10/K8S常用命令.html">
+            
+                <a href="../Chapter10/K8S常用命令.html">
+            
+                    
+                    K8S常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../Chapter11/apply部署过程.html">
+            
+                <a href="../Chapter11/apply部署过程.html">
+            
+                    
+                    apply部署过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >数据管理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6570;&#x636E;&#x7BA1;&#x7406;"><b></b>&#x6570;&#x636E;&#x7BA1;&#x7406;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#volume"><b></b>Volume</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#emptydir"><b></b>emptyDir</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#hostpath"><b></b>hostPath</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5916;&#x90E8;storage-provider"><b></b>&#x5916;&#x90E8;Storage Provider</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#persistentvolume--persistentvolumeclaim"><b></b>PersistentVolume &amp; PersistentVolumeClaim</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#pv&#x52A8;&#x6001;&#x4F9B;&#x7ED9;"><b></b>PV&#x52A8;&#x6001;&#x4F9B;&#x7ED9;</a></li></ul></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#secret--configmap"><b></b>Secret &amp; Configmap</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x521B;&#x5EFA;secret"><b></b>&#x521B;&#x5EFA;Secret</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x901A;&#x8FC7;--from-literal"><b></b>&#x901A;&#x8FC7;--from-literal</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x901A;&#x8FC7;--from-file"><b></b>&#x901A;&#x8FC7;--from-file</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x901A;&#x8FC7;--from-env-file"><b></b>&#x901A;&#x8FC7;--from-env-file</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x901A;&#x8FC7;yaml&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><b></b>&#x901A;&#x8FC7;YAML&#x914D;&#x7F6E;&#x6587;&#x4EF6;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x67E5;&#x770B;secret"><b></b>&#x67E5;&#x770B;Secret</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5728;pod&#x4E2D;&#x4F7F;&#x7528;secret"><b></b>&#x5728;Pod&#x4E2D;&#x4F7F;&#x7528;Secret</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#volume&#x65B9;&#x5F0F;"><b></b>Volume&#x65B9;&#x5F0F;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;"><b></b>&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;</a></li></ul></ul></ul></div><a href="#&#x6570;&#x636E;&#x7BA1;&#x7406;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x6570;&#x636E;&#x7BA1;&#x7406;"><a name="&#x6570;&#x636E;&#x7BA1;&#x7406;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x636E;&#x7BA1;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x636E;&#x7BA1;&#x7406;</h1>
+<h2 id="volume"><a name="volume" class="anchor-navigation-ex-anchor" href="#volume"><i class="fa fa-link" aria-hidden="true"></i></a>Volume</h2>
+<p>&#x5BB9;&#x5668;&#x548C;Pod&#x751F;&#x547D;&#x5468;&#x671F;&#x5F88;&#x77ED;&#xFF0C;&#x5BB9;&#x5668;&#x9500;&#x6BC1;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x5BB9;&#x5668;&#x5185;&#x90E8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x90FD;&#x4F1A;&#x88AB;&#x6E05;&#x9664;</p>
+<p>Volume&#x751F;&#x547D;&#x5468;&#x671F;&#x72EC;&#x7ACB;&#x4E8E;&#x5BB9;&#x5668;</p>
+<p>&#x672C;&#x8D28;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x5F53;Volume&#x88AB;mount&#xFF08;&#x5B89;&#x7F6E;&#xFF09;&#x5230;Pod,Pod&#x4E0A;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;Volume</p>
+<p>K8S Volume&#x4E5F;&#x652F;&#x6301;&#x591A;&#x79CD;backend(&#x540E;&#x53F0;)&#x7C7B;&#x578B;</p>
+<h3 id="emptydir"><a name="emptydir" class="anchor-navigation-ex-anchor" href="#emptydir"><i class="fa fa-link" aria-hidden="true"></i></a>emptyDir</h3>
+<p>&#x6700;&#x57FA;&#x672C;&#x7684;Volume&#x7C7B;&#x578B;&#xFF0C;Host&#x7684;&#x7A7A;&#x76EE;&#x5F55;</p>
+<p>emptyDir Volume&#x751F;&#x547D;&#x5468;&#x671F;&#x4E0E;Pod&#x4E00;&#x81F4;&#xFF0C;&#x5BF9;&#x4E8E;&#x5BB9;&#x5668;&#x6765;&#x8BF4;&#x6301;&#x4E45;</p>
+<p>&#x6A21;&#x62DF;producer-consumer&#x573A;&#x666F;&#x3002;Pod&#x6709;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;producer&#x548C;consumer&#xFF0C;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;volume&#x3002;producer&#x8D1F;&#x8D23;&#x5F80;Volume&#x5199;&#x6570;&#x636E;&#xFF0C;consumer&#x4ECE;volume&#x8BFB;&#x6570;&#x636E;</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+    name: producer-consumer
+spec:
+  containers:
+  - image: busybox
+    name: producer
+    volumeMounts:
+    # producer&#x5BB9;&#x5668;&#x5C06;volume Mount &#x5230;/producer_dir
+    - mountPath: /producer_dir
+      name: shared-volume
+    args:
+    - /bin/sh
+    - -c
+    #&#x5C06;&#x6570;&#x636E;&#x5199;&#x5165;hello
+    - echo &quot;hello world&quot; &gt; /producer_dir/hello ; sleep 30000
+
+  - image: busybox
+    name: consumer
+    volumeMounts:
+    # consumer&#x5BB9;&#x5668;&#x5C06;volume Mount &#x5230;/consumer_dir
+    - mountPath: /consumer_dir
+      name: shared-volume
+    args:
+    - /bin/sh
+    - -c
+    #cat&#x4ECE;&#x6587;&#x4EF6;&#x8BFB;&#x53D6;
+    - cat /consumer_dir/hello ; sleep 30000
+
+  volumes:
+  #&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;emptyDir&#x7C7B;&#x578B;&#x7684;Volume shared-volume
+  - name: shared-volume
+    emptyDir: {}
+</code></pre><pre><code>[docker@k8s-master ~]$ vi emptyDir.yml
+[docker@k8s-master ~]$ kubectl apply -f emptyDir.yml 
+pod/producer-consumer created
+[docker@k8s-master ~]$ kubectl get pod
+NAME                READY   STATUS    RESTARTS   AGE
+producer-consumer   2/2     Running   0          32s
+#kubectl logs&#x663E;&#x793A;&#x5BB9;&#x5668;consumer&#x6210;&#x529F;&#x8BFB;&#x5230;&#x4E86;producer&#x5199;&#x5165;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x9A8C;&#x8BC1;&#x4E86;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;&#x5171;&#x4EAB;volume
+[docker@k8s-master ~]$ kubectl logs producer-consumer consumer
+hello world
+</code></pre><p>&#x56E0;&#x4E3A;emptyDir&#x662F;Docker Host&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x91CC;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6548;&#x679C;&#x7B49;&#x540C;&#x6267;&#x884C;docker run -v /producer_dir&#x548C;docker run -v /consumer_dir.</p>
+<p>&#x53BB;&#x5BF9;&#x5E94;Node&#x8282;&#x70B9;&#x901A;&#x8FC7;docker inspect&#x67E5;&#x770B;&#x5BB9;&#x5668;&#x8BE6;&#x7EC6;&#x914D;&#x7F6E;</p>
+<pre><code>docker ps
+docker inspect containerId
+</code></pre><font color="red">emptyDir&#x662F;Host&#x521B;&#x5EFA;&#x7684;&#x4E34;&#x65F6;&#x76EE;&#x5F55;</font>
+
+<p><strong><em>&#x4F18;&#x70B9;</em></strong></p>
+<p>&#x80FD;&#x591F;&#x65B9;&#x4FBF;&#x5730;&#x4E3A;Pod&#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x63D0;&#x4F9B;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x989D;&#x5916;&#x914D;&#x7F6E;&#xFF0C;&#x4E0D;&#x5177;&#x5907;&#x6301;&#x4E45;&#x6027;&#x3002;Pod&#x4E0D;&#x5B58;&#x5728;&#xFF0C;emptyDir&#x4E5F;&#x65E7;&#x6CA1;&#x6709;&#x4E86;</p>
+<p><strong><em>&#x9002;&#x5408;&#x573A;&#x666F;</em></strong></p>
+<p>Pod&#x4E2D;&#x5BB9;&#x5668;&#x9700;&#x8981;&#x4E34;&#x65F6;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;</p>
+<h3 id="hostpath"><a name="hostpath" class="anchor-navigation-ex-anchor" href="#hostpath"><i class="fa fa-link" aria-hidden="true"></i></a>hostPath</h3>
+<p>&#x5C06;Docker Host&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x76EE;&#x5F55;mount&#x7ED9;Pod&#x5BB9;&#x5668;&#x3002;</p>
+<p>&#x5927;&#x591A;&#x6570;&#x5E94;&#x7528;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x589E;&#x52A0;&#x4E86;Pod&#x548C;&#x8282;&#x70B9;&#x7684;&#x8026;&#x5408;</p>
+<p><strong><em>&#x9002;&#x7528;</em></strong></p>
+<p>&#x9700;&#x8981;&#x8BBF;&#x95EE;K8S&#x548C;docker&#x5185;&#x90E8;&#x6570;&#x636E;&#x7684;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</p>
+<p>&#x6BD4;&#x5982;kube-apiserver&#x548C;kube-controller-manager</p>
+<p>&#x67E5;&#x770B;kube-apiserver Pod&#x7684;&#x914D;&#x7F6E;</p>
+<pre><code>kubectl edit --namespace=kube-system pod kube-apiserver-k8s-master
+</code></pre><p>Pod&#x9500;&#x6BC1;&#xFF0C;hostPath&#x5BF9;&#x7528;&#x76EE;&#x5F55;&#x4F1A;&#x4FDD;&#x7559;</p>
+<h3 id="&#x5916;&#x90E8;storage-provider"><a name="&#x5916;&#x90E8;storage-provider" class="anchor-navigation-ex-anchor" href="#&#x5916;&#x90E8;storage-provider"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5916;&#x90E8;Storage Provider</h3>
+<p>&#x7565;</p>
+<h3 id="persistentvolume--persistentvolumeclaim"><a name="persistentvolume--persistentvolumeclaim" class="anchor-navigation-ex-anchor" href="#persistentvolume--persistentvolumeclaim"><i class="fa fa-link" aria-hidden="true"></i></a>PersistentVolume &amp; PersistentVolumeClaim</h3>
+<p>PV&#x662F;&#x5916;&#x90E8;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x4E00;&#x5757;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x7BA1;&#x7406;&#x5458;&#x7EF4;&#x62A4;&#x548C;&#x521B;&#x5EFA;&#xFF0C;&#x5177;&#x6709;&#x6301;&#x4E45;&#x6027;&#xFF0C;&#x751F;&#x547D;&#x5468;&#x671F;&#x72EC;&#x7ACB;&#x4E8E;Pod</p>
+<p>PVC&#x662F;&#x5BF9;PV&#x7684;&#x7533;&#x8BF7;&#xFF0C;&#x666E;&#x901A;&#x7528;&#x6237;&#x521B;&#x5EFA;&#x548C;&#x7EF4;&#x62A4;&#xFF0C;&#x9700;&#x8981;&#x4E3A;Pod&#x5206;&#x914D;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#x65F6;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;PVC&#xFF0C;&#x6307;&#x660E;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#x7684;&#x5BB9;&#x91CF;&#x5927;&#x5C0F;&#x548C;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#xFF0C;K8S&#x4F1A;&#x81EA;&#x52A8;&#x67E5;&#x627E;&#x5E76;&#x63D0;&#x4F9B;&#x76F8;&#x5E94;&#x7684;pv</p>
+<pre><code>#&#x9A8C;&#x8BC1;PV&#x662F;&#x5426;&#x53EF;&#x7528;
+kubectl exec mypod1 touch /mydata/hello
+ls /nfsdata/pv1/
+&#x5728;Pod&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6;/mydata/hello&#x662F;&#x5426;&#x4FDD;&#x5B58;&#x5230;NFS&#x670D;&#x52A1;&#x5668;&#x76EE;&#x5F55;/nfsdata/pv1/&#x4E2D;
+</code></pre><h4 id="&#x56DE;&#x6536;"><a name="&#x56DE;&#x6536;" class="anchor-navigation-ex-anchor" href="#&#x56DE;&#x6536;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DE;&#x6536;</h4>
+<pre><code>kubectl delete pvc &lt;mypvc1&gt;
+kubectl delete pv &lt;pvName&gt;
+</code></pre><p>&#x5F53;PVC mypvc1&#x88AB;&#x5220;&#x9664;&#x540E;&#xFF0C;K8S&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Pod recycler-for-mypv1&#xFF08;&#x8DDF;&#x8BBE;&#x7F6E;&#x7684;&#x56DE;&#x6536;&#x7B56;&#x7565;&#x76F8;&#x5173;&#xFF09;,&#x8FD9;&#x4E2A;Pod&#x7528;&#x6765;&#x6E05;&#x9664;PV mypv1&#x7684;&#x6570;&#x636E;&#xFF0C;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x4E3A;Released,&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x63A5;&#x89E6;&#x4E86;Bound&#xFF0C;&#x6E05;&#x9664;&#x5B8C;&#x6210;&#x540E;&#x72B6;&#x6001;&#x53D8;&#x4E3A;&#x53EF;&#x7528;</p>
+<h3 id="pv&#x52A8;&#x6001;&#x4F9B;&#x7ED9;"><a name="pv&#x52A8;&#x6001;&#x4F9B;&#x7ED9;" class="anchor-navigation-ex-anchor" href="#pv&#x52A8;&#x6001;&#x4F9B;&#x7ED9;"><i class="fa fa-link" aria-hidden="true"></i></a>PV&#x52A8;&#x6001;&#x4F9B;&#x7ED9;</h3>
+<p>&#x63D0;&#x524D;&#x521B;&#x5EFA;PV&#xFF0C;&#x901A;&#x8FC7;PVC&#x8FDB;&#x884C;&#x7533;&#x8BF7;&#x7684;PV&#x53EB;&#x9759;&#x6001;&#x4F9B;&#x7ED9;</p>
+<p>&#x5982;&#x679C;&#x6CA1;&#x627E;&#x5230;&#x6EE1;&#x8DB3;PVC&#x6761;&#x4EF6;&#x7684;PV&#xFF0C;&#x52A8;&#x6001;&#x521B;&#x5EFA;PV&#x7684;&#x53EB;&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x3002;</p>
+<p>&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x901A;&#x8FC7;StorageClass&#x5B9E;&#x73B0;</p>
+<p>StorageClass&#x652F;&#x6301;Delete&#x548C;Retain&#x4E24;&#x79CD;reclaimPolicy,&#x9ED8;&#x8BA4;Delete</p>
+<h1 id="secret--configmap"><a name="secret--configmap" class="anchor-navigation-ex-anchor" href="#secret--configmap"><i class="fa fa-link" aria-hidden="true"></i></a>Secret &amp; Configmap</h1>
+<p>&#x5E94;&#x7528;&#x542F;&#x52A8;&#x4E2D;&#x96BE;&#x514D;&#x6709;&#x654F;&#x611F;&#x5B57;&#x7B26;&#xFF0C;K8S&#x5229;&#x7528;Secret&#x4EE5;&#x5BC6;&#x6587;&#x65B9;&#x5F0F;&#x5B58;&#x50A8;&#x6570;&#x636E;&#xFF0C;&#x4EE5;Volume&#x5F62;&#x5F0F;&#x88AB;mount&#x5230;Pod&#xFF0C;&#x5BB9;&#x5668;&#x901A;&#x8FC7;&#x6587;&#x4EF6;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;Secret&#x4E2D;&#x5F97;&#x654F;&#x611F;&#x6570;&#x636E;&#xFF0C;&#x6B64;&#x5916;&#xFF0C;&#x5BB9;&#x5668;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;&#x6570;&#x636E;</p>
+<p>Secret&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x6216;YAML&#x521B;&#x5EFA;&#x3002;</p>
+<h2 id="&#x521B;&#x5EFA;secret"><a name="&#x521B;&#x5EFA;secret" class="anchor-navigation-ex-anchor" href="#&#x521B;&#x5EFA;secret"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;Secret</h2>
+<h3 id="&#x901A;&#x8FC7;--from-literal"><a name="&#x901A;&#x8FC7;--from-literal" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;--from-literal"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;--from-literal</h3>
+<pre><code>kubectl create secret generic mysecret --from-literal=username=admin --from-literal=password=123456
+</code></pre><p>&#x6BCF;&#x4E2A;--from-literal&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x4FE1;&#x606F;&#x6761;&#x76EE;</p>
+<h3 id="&#x901A;&#x8FC7;--from-file"><a name="&#x901A;&#x8FC7;--from-file" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;--from-file"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;--from-file</h3>
+<pre><code>echo -n admin &gt; ./username
+echo -n 123456 &gt; ./password
+kubectl create secret generic mysecret --from-file=./username --from-filr=./password
+</code></pre><h3 id="&#x901A;&#x8FC7;--from-env-file"><a name="&#x901A;&#x8FC7;--from-env-file" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;--from-env-file"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;--from-env-file</h3>
+<pre><code>cat &lt;&lt; EOF &gt; env.txt
+username=admin
+password=123456
+EOF
+kubectl create secret generic mysecret --from-env-file=env.txt
+</code></pre><p>&#x6587;&#x4EF6;env.txt&#x6BCF;&#x884C;key=value&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x4FE1;&#x606F;&#x6761;&#x76EE;</p>
+<h3 id="&#x901A;&#x8FC7;yaml&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a name="&#x901A;&#x8FC7;yaml&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;yaml&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;YAML&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<pre><code>apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+data:
+  username: YWRtaW4=
+  password: MTIzNDU2
+</code></pre><p>&#x6587;&#x4EF6;&#x4E2D;&#x5F97;&#x654F;&#x611F;&#x6570;&#x636E;&#x5FC5;&#x987B;&#x662F;&#x901A;&#x8FC7;BASE64&#x7F16;&#x7801;&#x540E;&#x7684;&#x7ED3;&#x679C;</p>
+<pre><code>echo -n admin | base64
+echo -n 123456 | base64
+
+[docker@k8s-master ~]$ kubectl apply -f mysecret.yml 
+secret/mysecret created
+</code></pre><h2 id="&#x67E5;&#x770B;secret"><a name="&#x67E5;&#x770B;secret" class="anchor-navigation-ex-anchor" href="#&#x67E5;&#x770B;secret"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67E5;&#x770B;Secret</h2>
+<pre><code>[docker@k8s-master ~]$ kubectl get secret mysecret
+NAME       TYPE     DATA   AGE
+mysecret   Opaque   2      57s
+</code></pre><p>&#x663E;&#x793A;&#x6709;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#xFF0C;kubectl describe secret&#x67E5;&#x770B;&#x6761;&#x76EE;&#x5F97;Key</p>
+<p>&#x67E5;&#x770B;Value</p>
+<pre><code>kubectl edit secret mysecret
+#base64&#x53CD;&#x7F16;&#x8BD1;
+echo -n YWRtaW4= | base64 --decode
+</code></pre><h2 id="&#x5728;pod&#x4E2D;&#x4F7F;&#x7528;secret"><a name="&#x5728;pod&#x4E2D;&#x4F7F;&#x7528;secret" class="anchor-navigation-ex-anchor" href="#&#x5728;pod&#x4E2D;&#x4F7F;&#x7528;secret"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5728;Pod&#x4E2D;&#x4F7F;&#x7528;Secret</h2>
+<p>pod&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Volume&#x6216;&#x8005;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;Secret</p>
+<h3 id="volume&#x65B9;&#x5F0F;"><a name="volume&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#volume&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>Volume&#x65B9;&#x5F0F;</h3>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: busybox
+    args:
+      - /bin/sh
+      - -c
+      - sleep 10; touch /tmp/healthy; sleep 30000
+    volumeMounts:
+    #&#x5C06;foo mount&#x5230;&#x5BB9;&#x5668;&#x8DEF;&#x5F84;/etc/foo&#xFF0C;&#x6307;&#x5B9A;&#x8BFB;&#x5199;&#x6743;&#x9650;&#x53EA;&#x8BFB;
+    - mountPath: &quot;/etc/foo&quot;
+      name: foo
+      readOnly: true
+  #&#x5B9A;&#x4E49;volume foo&#xFF0C;&#x6765;&#x6E90;secret mysecret
+  volumes:
+  - name: foo
+    secret:
+      secretName: mysecret
+</code></pre><pre><code>[docker@k8s-master ~]$ kubectl apply -f mypod.yml 
+pod/mypod created
+[docker@k8s-master ~]$ kubectl exec -it mypod sh
+/ # ls /etc/foo
+password  username
+/ # cat /etc/foo/username 
+admin/ # 
+/ # cat /etc/foo/password 
+123456/ #
+</code></pre><p>K8S&#x4F1A;&#x5728;&#x6307;&#x5B9A;&#x5F97;&#x8DEF;&#x5F84;/etc/foo&#x4E0B;&#x4E3A;&#x6BCF;&#x6761;&#x654F;&#x611F;&#x6570;&#x636E;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;Key&#x4E3A;&#x6587;&#x4EF6;&#x540D;&#xFF0C;Value&#x4EE5;&#x94ED;&#x6587;&#x5B58;&#x653E;&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x540D;</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: busybox
+    args:
+      - /bin/sh
+      - -c
+      - sleep 10; touch /tmp/healthy; sleep 30000
+    volumeMounts:
+    #&#x5C06;foo mount&#x5230;&#x5BB9;&#x5668;&#x8DEF;&#x5F84;/etc/foo&#xFF0C;&#x6307;&#x5B9A;&#x8BFB;&#x5199;&#x6743;&#x9650;&#x53EA;&#x8BFB;
+    - mountPath: &quot;/etc/foo&quot;
+      name: foo
+      readOnly: true
+  #&#x5B9A;&#x4E49;volume foo&#xFF0C;&#x6765;&#x6E90;secret mysecret
+  volumes:
+  - name: foo
+    secret:
+      secretName: mysecret
+      items:
+      - key: username
+        path: my-group/my-username
+      - key: password
+        path: my-group/my-password
+</code></pre><p>&#x4EE5;Volume&#x65B9;&#x5F0F;&#x4F7F;&#x7528;&#x7684;Secret&#x652F;&#x6301;&#x52A8;&#x6001;&#x66F4;&#x65B0;&#xFF1A;Secret&#x66F4;&#x65B0;&#x540E;&#xFF0C;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4E5F;&#x4F1A;&#x66F4;&#x65B0;</p>
+<h3 id="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;"><a name="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65B9;&#x5F0F;</h3>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: busybox
+    args:
+      - /bin/sh
+      - -c
+      - sleep 10; touch /tmp/healthy; sleep 30000
+    volumeMounts:
+    #&#x5C06;foo mount&#x5230;&#x5BB9;&#x5668;&#x8DEF;&#x5F84;/etc/foo&#xFF0C;&#x6307;&#x5B9A;&#x8BFB;&#x5199;&#x6743;&#x9650;&#x53EA;&#x8BFB;
+    - mountPath: &quot;/etc/foo&quot;
+      name: foo
+      readOnly: true
+  env:
+    - name: SECRET_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name:  mysecret
+          key: username
+    - name: SECRET_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mysecret
+          key: password
+</code></pre><pre><code>[docker@k8s-master ~]$ kubectl apply -f mypod.yml 
+pod/mypod created
+[docker@k8s-master ~]$ kubectl exec -it mypod sh
+/ # echo $SECRET_USERNAME
+admin
+/ # echo $SECRET_PASSWORD
+123456
+</code></pre><p>&#x65E0;&#x6CD5;&#x652F;&#x6491;Secret&#x52A8;&#x6001;&#x66F4;&#x65B0;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <em>Dazzle Lin</em> </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2019-07-02 22:25:25 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Health Check.html" class="navigation navigation-prev " aria-label="Previous page: Health Check">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../Chapter5/Helm-k8s的包管理工具.html" class="navigation navigation-next " aria-label="Next page: Helm-k8s的包管理工具">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"数据管理","level":"1.6","depth":1,"next":{"title":"Helm-k8s的包管理工具","level":"1.7","depth":1,"path":"Chapter5/Helm-k8s的包管理工具.md","ref":"Chapter5/Helm-k8s的包管理工具.md","articles":[]},"previous":{"title":"Health Check","level":"1.5.5","depth":2,"path":"Chapter4/Health Check.md","ref":"Chapter4/Health Check.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","search-pro","github","chapter-fold","code","copy-code-button","splitter","page-footer-ex","simple-page-toc","anchor-navigation-ex","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/linqinye"},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"page-footer-ex":{"copyright":"By <em>Dazzle Lin</em>","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Dazzle","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"编写docker学习笔记","language":"zh-hans","gitbook":"*","description":"编写docker学习笔记"},"file":{"path":"Chapter4/数据管理.md","mtime":"2019-07-02T14:25:25.682Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T04:13:45.732Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

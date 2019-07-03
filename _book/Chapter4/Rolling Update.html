@@ -1,0 +1,528 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rolling Update · 编写docker学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Dazzle">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Health Check.html" />
+    
+    
+    <link rel="prev" href="通过Service访问Pod.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter1/跑起来.html">
+            
+                <a href="../Chapter1/跑起来.html">
+            
+                    
+                    跑起来
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter2/概念.html">
+            
+                <a href="../Chapter2/概念.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter3/部署Kubernetes Cluster.html">
+            
+                <a href="../Chapter3/部署Kubernetes Cluster.html">
+            
+                    
+                    部署Kubernetes Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="kubernetes架构.html">
+            
+                <a href="kubernetes架构.html">
+            
+                    
+                    kubernetes架构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="部署应用.html">
+            
+                <a href="部署应用.html">
+            
+                    
+                    部署应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="运行应用.html">
+            
+                <a href="运行应用.html">
+            
+                    
+                    运行应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="通过Service访问Pod.html">
+            
+                <a href="通过Service访问Pod.html">
+            
+                    
+                    通过Service访问Pod
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.4" data-path="Rolling Update.html">
+            
+                <a href="Rolling Update.html">
+            
+                    
+                    Rolling Update
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="Health Check.html">
+            
+                <a href="Health Check.html">
+            
+                    
+                    Health Check
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="数据管理.html">
+            
+                <a href="数据管理.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                <a href="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                    
+                    Helm-k8s的包管理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../Chapter6/网络.html">
+            
+                <a href="../Chapter6/网络.html">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../Chapter7/Kubernetes Dashboard.html">
+            
+                <a href="../Chapter7/Kubernetes Dashboard.html">
+            
+                    
+                    Kubernetes Dashboard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../Chapter8/Kubernetes集群监控.html">
+            
+                <a href="../Chapter8/Kubernetes集群监控.html">
+            
+                    
+                    Kubernetes集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../Chapter9/Kubernetes集群日志管理.html">
+            
+                <a href="../Chapter9/Kubernetes集群日志管理.html">
+            
+                    
+                    Kubernetes集群日志管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Chapter10/K8S常用命令.html">
+            
+                <a href="../Chapter10/K8S常用命令.html">
+            
+                    
+                    K8S常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../Chapter11/apply部署过程.html">
+            
+                <a href="../Chapter11/apply部署过程.html">
+            
+                    
+                    apply部署过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rolling Update</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#rolling-update"><b></b>Rolling Update</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#maxsurge"><b></b>maxSurge</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#maxunavailable"><b></b>maxUnavailable</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x56DE;&#x6EDA;"><b></b>&#x56DE;&#x6EDA;</a></li></ul></ul></div><a href="#rolling-update" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="rolling-update"><a name="rolling-update" class="anchor-navigation-ex-anchor" href="#rolling-update"><i class="fa fa-link" aria-hidden="true"></i></a>Rolling Update</h1>
+<p>&#x6EDA;&#x52A8;&#x66F4;&#x65B0;&#x662F;&#x4E00;&#x6B21;&#x53EA;&#x66F4;&#x65B0;&#x4E00;&#x5C0F;&#x90E8;&#x5206;&#x526F;&#x672C;&#xFF0C;&#x6210;&#x529F;&#x540E;&#x518D;&#x66F4;&#x65B0;&#x66F4;&#x591A;&#x526F;&#x672C;&#xFF0C;&#x6700;&#x7EC8;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x526F;&#x672C;&#x7684;&#x66F4;&#x65B0;&#x3002;</p>
+<p><strong><em>&#x6700;&#x5927;&#x597D;&#x5904;</em></strong></p>
+<p>&#x96F6;&#x505C;&#x673A;&#xFF0C;&#x6574;&#x4E2A;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x59CB;&#x7EC8;&#x6709;&#x526F;&#x672C;&#x8FD0;&#x884C;&#xFF0C;&#x4FDD;&#x8BC1;&#x4E1A;&#x52A1;&#x8FDE;&#x7EED;&#x6027;</p>
+<p>&#x4FEE;&#x6539;&#x955C;&#x50CF;&#x7248;&#x672C;&#xFF0C;&#x5373;&#x66F4;&#x65B0;&#xFF0C;&#x518D;&#x6B21;&#x6267;&#x884C;kubectl apply</p>
+<p>&#x4E4B;&#x524D;&#x7684;&#x4E09;&#x4E2A;Pod&#x4F1A;&#x88AB;&#x4E09;&#x4E2A;&#x65B0;&#x7684;Pod&#x66FF;&#x6362;&#x6389;</p>
+<p>&#x6BCF;&#x6B21;&#x66FF;&#x6362;Pod&#x6570;&#x91CF;&#x662F;&#x53EF;&#x4EE5;&#x5B9A;&#x5236;&#xFF0C;K8S&#x63D0;&#x4F9B;maxSurge&#x548C;maxUnavailable&#x6765;&#x7CBE;&#x7EC6;&#x63A7;&#x5236;Pod&#x7684;&#x66FF;&#x6362;&#x6570;&#x91CF;</p>
+<h2 id="maxsurge"><a name="maxsurge" class="anchor-navigation-ex-anchor" href="#maxsurge"><i class="fa fa-link" aria-hidden="true"></i></a>maxSurge</h2>
+<p>&#x63A7;&#x5236;&#x6EDA;&#x52A8;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x526F;&#x672C;&#x603B;&#x6570;&#x8D85;&#x8FC7;DESIRED&#x7684;&#x4E0A;&#x7EBF;&#x3002;&#x9ED8;&#x8BA4;25%&#x3002;roundUp(DESIRED+DESIRED*25%)</p>
+<h2 id="maxunavailable"><a name="maxunavailable" class="anchor-navigation-ex-anchor" href="#maxunavailable"><i class="fa fa-link" aria-hidden="true"></i></a>maxUnavailable</h2>
+<p>&#x63A7;&#x5236;&#x6EDA;&#x52A8;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E0D;&#x53EF;&#x7528;&#x7684;&#x526F;&#x672C;&#x5360;DESIRED&#x6700;&#x5927;&#x6BD4;&#x4F8B;&#x3002;&#x9ED8;&#x8BA4;25%&#xFF0C;DESIRED-roundDown(DESIRED*25%)</p>
+<font color="red">maxSurge&#x503C;&#x8D8A;&#x5927;&#xFF0C;&#x521D;&#x59CB;&#x521B;&#x5EFA;&#x7684;&#x65B0;&#x526F;&#x672C;&#x6570;&#x91CF;&#x5C31;&#x8D8A;&#x591A;&#xFF1B;maxUnavailable&#x503C;&#x8D8A;&#x5927;&#xFF0C;&#x521D;&#x59CB;&#x9500;&#x6BC1;&#x7684;&#x65E7;&#x526F;&#x672C;&#x6570;&#x91CF;&#x65E7;&#x8D8A;&#x591A;&#x3002;</font>
+
+<p>&#x5B9A;&#x5236;maxSurge&#x548C;maxUnavailable</p>
+<pre><code>spec:
+ strategy:
+  rollingUpdate:
+   maxSurge: 35%
+   maxUnavailable: 35%
+</code></pre><h2 id="&#x56DE;&#x6EDA;"><a name="&#x56DE;&#x6EDA;" class="anchor-navigation-ex-anchor" href="#&#x56DE;&#x6EDA;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DE;&#x6EDA;</h2>
+<p>kubectl apply&#x6BCF;&#x6B21;&#x66F4;&#x65B0;&#x5E94;&#x7528;&#x65F6;&#xFF0C;k8s&#x4F1A;&#x8BB0;&#x5F55;&#x4E0B;&#x5F53;&#x524D;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4FDD;&#x5B58;&#x4E3A;&#x4E00;&#x4E2A;revision&#xFF08;&#x7248;&#x6B21;&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x56DE;&#x6EDA;&#x5230;&#x7279;&#x5B9A;revision&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E0B;&#xFF0C;K8S&#x53EA;&#x4F1A;&#x4FDD;&#x7559;&#x6700;&#x8FD1;&#x7684;&#x51E0;&#x4E2A;revision&#xFF0C;&#x53EF;&#x4EE5;&#x5728;Deployment&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;revisionHistoryLimit&#x5C5E;&#x6027;&#x589E;&#x52A0;revision&#x6570;&#x91CF;&#x3002;</p>
+<pre><code>kubactl apply -f httpd.v1.yml --record
+</code></pre><p>--record&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x5F53;&#x524D;&#x547D;&#x4EE4;&#x8BB0;&#x5F55;&#x5230;revision&#x8BB0;&#x5F55;&#x4E2D;&#xFF0C;</p>
+<pre><code>#&#x67E5;&#x770B;revision&#x5386;&#x53F2;&#x8BB0;&#x5F55;
+kubectl rollout history deployment httpd
+#&#x56DE;&#x6EDA;&#x5230;&#x67D0;&#x4E2A;&#x7248;&#x672C;
+kubectl rollout undo deployment httpd --to-revision=1
+</code></pre><footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <em>Dazzle Lin</em> </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2019-07-02 22:23:21 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="通过Service访问Pod.html" class="navigation navigation-prev " aria-label="Previous page: 通过Service访问Pod">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Health Check.html" class="navigation navigation-next " aria-label="Next page: Health Check">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rolling Update","level":"1.5.4","depth":2,"next":{"title":"Health Check","level":"1.5.5","depth":2,"path":"Chapter4/Health Check.md","ref":"Chapter4/Health Check.md","articles":[]},"previous":{"title":"通过Service访问Pod","level":"1.5.3","depth":2,"path":"Chapter4/通过Service访问Pod.md","ref":"Chapter4/通过Service访问Pod.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","search-pro","github","chapter-fold","code","copy-code-button","splitter","page-footer-ex","simple-page-toc","anchor-navigation-ex","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/linqinye"},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"page-footer-ex":{"copyright":"By <em>Dazzle Lin</em>","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Dazzle","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"编写docker学习笔记","language":"zh-hans","gitbook":"*","description":"编写docker学习笔记"},"file":{"path":"Chapter4/Rolling Update.md","mtime":"2019-07-02T14:23:21.936Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T04:13:45.732Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

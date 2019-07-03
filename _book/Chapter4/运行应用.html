@@ -1,0 +1,659 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>运行应用 · 编写docker学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Dazzle">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="通过Service访问Pod.html" />
+    
+    
+    <link rel="prev" href="部署应用.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter1/跑起来.html">
+            
+                <a href="../Chapter1/跑起来.html">
+            
+                    
+                    跑起来
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter2/概念.html">
+            
+                <a href="../Chapter2/概念.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter3/部署Kubernetes Cluster.html">
+            
+                <a href="../Chapter3/部署Kubernetes Cluster.html">
+            
+                    
+                    部署Kubernetes Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="kubernetes架构.html">
+            
+                <a href="kubernetes架构.html">
+            
+                    
+                    kubernetes架构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="部署应用.html">
+            
+                <a href="部署应用.html">
+            
+                    
+                    部署应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2" data-path="运行应用.html">
+            
+                <a href="运行应用.html">
+            
+                    
+                    运行应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="通过Service访问Pod.html">
+            
+                <a href="通过Service访问Pod.html">
+            
+                    
+                    通过Service访问Pod
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="Rolling Update.html">
+            
+                <a href="Rolling Update.html">
+            
+                    
+                    Rolling Update
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="Health Check.html">
+            
+                <a href="Health Check.html">
+            
+                    
+                    Health Check
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="数据管理.html">
+            
+                <a href="数据管理.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                <a href="../Chapter5/Helm-k8s的包管理工具.html">
+            
+                    
+                    Helm-k8s的包管理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../Chapter6/网络.html">
+            
+                <a href="../Chapter6/网络.html">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../Chapter7/Kubernetes Dashboard.html">
+            
+                <a href="../Chapter7/Kubernetes Dashboard.html">
+            
+                    
+                    Kubernetes Dashboard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../Chapter8/Kubernetes集群监控.html">
+            
+                <a href="../Chapter8/Kubernetes集群监控.html">
+            
+                    
+                    Kubernetes集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../Chapter9/Kubernetes集群日志管理.html">
+            
+                <a href="../Chapter9/Kubernetes集群日志管理.html">
+            
+                    
+                    Kubernetes集群日志管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Chapter10/K8S常用命令.html">
+            
+                <a href="../Chapter10/K8S常用命令.html">
+            
+                    
+                    K8S常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../Chapter11/apply部署过程.html">
+            
+                <a href="../Chapter11/apply部署过程.html">
+            
+                    
+                    apply部署过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >运行应用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x8FD0;&#x884C;&#x5E94;&#x7528;"><b></b>&#x8FD0;&#x884C;&#x5E94;&#x7528;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#deployment"><b></b>deployment</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x547D;&#x4EE4;-vs-&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><b></b>&#x547D;&#x4EE4; VS &#x914D;&#x7F6E;&#x6587;&#x4EF6;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F38;&#x7F29;"><b></b>&#x4F38;&#x7F29;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#failover"><b></b>Failover</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#label&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;"><b></b>label&#x63A7;&#x5236;Pod&#x4F4D;&#x7F6E;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#daemonset"><b></b>DaemonSet</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#job"><b></b>Job</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5B9A;&#x65F6;job"><b></b>&#x5B9A;&#x65F6;Job</a></li></ul></ul></div><a href="#&#x8FD0;&#x884C;&#x5E94;&#x7528;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x8FD0;&#x884C;&#x5E94;&#x7528;"><a name="&#x8FD0;&#x884C;&#x5E94;&#x7528;" class="anchor-navigation-ex-anchor" href="#&#x8FD0;&#x884C;&#x5E94;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FD0;&#x884C;&#x5E94;&#x7528;</h1>
+<pre><code>#&#x4E86;&#x89E3;&#x66F4;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;
+kubectl describe deployment &lt;imageName&gt;
+#&#x67E5;&#x770B;&#x526F;&#x672C;&#x4FE1;&#x606F;
+kubectl get replicaset -o wide
+kubectl describe replicaset
+#&#x67E5;&#x770B;&#x526F;&#x672C;Pod
+kubectl get pod
+kubectl describe pod
+</code></pre><font color="red">&#x603B;&#x7ED3;</font>
+
+<p>1.&#x7528;&#x6237;&#x901A;&#x8FC7;Kubectl&#x521B;&#x5EFA;Deployment</p>
+<p>2.Deployment&#x521B;&#x5EFA;ReplicaSet</p>
+<p>3.ReplicaSet&#x521B;&#x5EFA;Pod</p>
+<p>&#x526F;&#x672C;&#x5BF9;&#x8C61;&#x547D;&#x540D;:&#x7236;&#x5BF9;&#x8C61;&#x540D;&#x5B57;+&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x6570;&#x5B57;</p>
+<h2 id="deployment"><a name="deployment" class="anchor-navigation-ex-anchor" href="#deployment"><i class="fa fa-link" aria-hidden="true"></i></a>deployment</h2>
+<h3 id="&#x547D;&#x4EE4;-vs-&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a name="&#x547D;&#x4EE4;-vs-&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;-vs-&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4; VS &#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<h4 id="&#x4E24;&#x79CD;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x65B9;&#x5F0F;"><a name="&#x4E24;&#x79CD;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x4E24;&#x79CD;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E24;&#x79CD;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x65B9;&#x5F0F;</h4>
+<p><strong>1.kubectl&#x547D;&#x4EE4;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#xFF0C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x8D44;&#x6E90;&#x7684;&#x5C5E;&#x6027;</strong></p>
+<p>&#x7B80;&#x5355;&#x3001;&#x76F4;&#x89C2;&#x3001;&#x5FEB;&#x6377;&#x3001;&#x4E0A;&#x624B;&#x5FEB;&#x3002;&#x9002;&#x5408;&#x4E34;&#x65F6;&#x6D4B;&#x8BD5;&#x6216;&#x5B9E;&#x9A8C;</p>
+<pre><code>kubectl run nginx-deployment --image=nginx:1.7.9 --replicas=2
+</code></pre><p><strong>2.&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x548C;kubectl apply&#x521B;&#x5EFA;</strong></p>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x4E86;&#x5E94;&#x7528;&#x6700;&#x7EC8;&#x8981;&#x8FBE;&#x5230;&#x7684;&#x72B6;&#x6001;</p>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x63D0;&#x4F9B;&#x4E86;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x80FD;&#x91CD;&#x590D;&#x90E8;&#x7F72;</p>
+<p>&#x53EF;&#x4EE5;&#x50CF;&#x7BA1;&#x7406;&#x4EE3;&#x7801;&#x4E00;&#x6837;&#x7BA1;&#x7406;&#x90E8;&#x7F72;</p>
+<p>&#x9002;&#x5408;&#x6B63;&#x5F0F;&#x3001;&#x8DE8;&#x73AF;&#x5883;&#x3001;&#x89C4;&#x6A21;&#x5316;&#x90E8;&#x7F72;</p>
+<pre><code>kubectl apply -f xxx.yml
+</code></pre><p>&#x8D44;&#x6E90;&#x683C;&#x5F0F;&#x4E3A;YAML</p>
+<pre><code>#&#x5F53;&#x524D;&#x914D;&#x7F6E;&#x683C;&#x5F0F;&#x7684;&#x7248;&#x672C;
+apiVersion: extensions/v1beta1
+#&#x8981;&#x521B;&#x5EFA;&#x7684;&#x8D44;&#x6E90;&#x7C7B;&#x578B;
+kind: Deployment
+#&#x8BE5;&#x8D44;&#x6E90;&#x7684;&#x5143;&#x6570;&#x636E;
+metadata:
+ #&#x5FC5;&#x9700;&#x7684;&#x5143;&#x6570;&#x636E;&#x9879;
+ name: nginx-deployment
+#&#x8BE5;Deployment&#x7684;&#x89C4;&#x683C;&#x8BF4;&#x660E;
+spec:
+ #&#x526F;&#x672C;&#x6570;&#x91CF;&#xFF0C;&#x9ED8;&#x8BA4;1
+ replicas: 2
+ #&#x5B9A;&#x4E49;Pod&#x6A21;&#x677F;&#xFF0C;&#x91CD;&#x8981;
+ template:
+  #Pod&#x5143;&#x6570;&#x636E;&#xFF0C;&#x81F3;&#x5C11;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;label
+  metadata:
+   labels:
+    app: web_server
+  #&#x63CF;&#x8FF0;Pod&#x89C4;&#x683C;&#xFF0C;&#x6B64;&#x90E8;&#x5206;&#x5B9A;&#x4E49;Pod&#x4E2D;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x5C5E;&#x6027;&#xFF0C;name&#x548C;image&#x662F;&#x5FC5;&#x987B;&#x7684;
+  spec:
+   containers:
+   - name: nginx
+     image: nginx:1.7.9
+</code></pre><h4 id="&#x5220;&#x9664;&#x8D44;&#x6E90;"><a name="&#x5220;&#x9664;&#x8D44;&#x6E90;" class="anchor-navigation-ex-anchor" href="#&#x5220;&#x9664;&#x8D44;&#x6E90;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5220;&#x9664;&#x8D44;&#x6E90;</h4>
+<pre><code>kubectl delete deployment nginx-deployment
+kubectl delete -f nginx.yml
+</code></pre><h3 id="&#x4F38;&#x7F29;"><a name="&#x4F38;&#x7F29;" class="anchor-navigation-ex-anchor" href="#&#x4F38;&#x7F29;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F38;&#x7F29;</h3>
+<p>&#x5728;&#x7EBF;&#x589E;&#x52A0;&#x6216;&#x51CF;&#x5C11;Pod&#x526F;&#x672C;&#x6570;</p>
+<p><strong>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x526F;&#x672C;&#x6570;,&#x53EF;&#x63A7;&#x5236;&#x589E;&#x5220;&#x526F;&#x672C;&#x6570;&#xFF08;&#x5C11;&#x589E;&#x591A;&#x5220;&#xFF09;</strong></p>
+<p>&#x65B0;&#x5EFA;&#x526F;&#x672C;&#x88AB;&#x521B;&#x5EFA;&#x5E76;&#x8C03;&#x5EA6;node1&#x548C;node2&#x4E0A;</p>
+<p>&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E0B;K8S&#x4E0D;&#x4F1A;&#x5C06;Pod&#x8C03;&#x5EA6;&#x5230;Master&#x8282;&#x70B9;</p>
+<pre><code>#&#x8BBE;&#x7F6E;Master&#x4F5C;&#x4E3A;Pod
+kubectl taint node k8s-master node-role.kubernetes.io/master-
+#&#x6062;&#x590D;Master Only&#x72B6;&#x6001;
+kubectl taint node k8s-master node-role.kubernetes.io/master=&quot;&quot;:NoSchedule
+</code></pre><h3 id="failover"><a name="failover" class="anchor-navigation-ex-anchor" href="#failover"><i class="fa fa-link" aria-hidden="true"></i></a>Failover</h3>
+<p><img src="images/K8S-06.png" alt="06"></p>
+<p>&#x6A21;&#x62DF;&#x6545;&#x969C;&#xFF0C;&#x5173;&#x95ED;Node2</p>
+<pre><code>halt -h
+</code></pre><p>K8S&#x68C0;&#x6D4B;&#x5230;node2&#x4E0D;&#x53EF;&#x7528;&#xFF0C;&#x81EA;&#x52A8;&#x8C03;&#x5EA6;&#x5230;node1,&#x7EF4;&#x6301;&#x526F;&#x672C;&#x6570;&#xFF0C;node2&#x6062;&#x590D;&#x540E;&#xFF0C;Unknown&#x7684;Pod&#x4F1A;&#x88AB;&#x5220;&#x9664;&#xFF0C;&#x4F46;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x8C03;&#x5EA6;&#x3002;</p>
+<p><img src="images/K8S-07.png" alt="07"></p>
+<h3 id="label&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;"><a name="label&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#label&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>label&#x63A7;&#x5236;Pod&#x4F4D;&#x7F6E;</h3>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Scheduler&#x4F1A;&#x5C06;Pod&#x8C03;&#x5EA6;&#x5230;&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684;Node,&#x4E0D;&#x8FC7;&#x6709;&#x4E9B;&#x65F6;&#x5019;&#x60F3;&#x8981;&#x5C06;Pod&#x90E8;&#x7F72;&#x5230;&#x6307;&#x5B9A;&#x7684;Node</p>
+<p><strong>label&#x662F;Key-value&#x5BF9;&#xFF0C;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#x90FD;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;label&#xFF0C;&#x7075;&#x6D3B;&#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;</strong></p>
+<pre><code>#&#x4F8B;&#xFF1A;&#x6807;&#x6CE8;node&#x662F;&#x914D;&#x7F6E;&#x4E86;SSD&#x7684;&#x8282;&#x70B9;
+kubectl label node k8s-node1 disktype=ssd
+#&#x67E5;&#x770B;&#x8282;&#x70B9;&#x7684;label
+kubectl get node --show-labels
+</code></pre><p>&#x6307;&#x5B9A;&#x5C06;Pod&#x90E8;&#x7F72;&#x5230;k8s-node1&#xFF0C;&#x7F16;&#x8F91;nginx.yml,&#x4FEE;&#x6539;&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>#&#x63CF;&#x8FF0;Pod&#x89C4;&#x683C;&#xFF0C;&#x6B64;&#x90E8;&#x5206;&#x5B9A;&#x4E49;Pod&#x4E2D;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x5C5E;&#x6027;&#xFF0C;name&#x548C;image&#x662F;&#x5FC5;&#x987B;&#x7684;
+  spec:
+   containers:
+   - name: nginx
+     image: nginx:1.7.9
+   #&#x6307;&#x5B9A;&#x5C06;&#x6B64;Pod&#x90E8;&#x7F72;&#x5230;&#x5177;&#x6709;label disktype=ssd&#x7684;Node&#x4E0A;
+   nodeSelector:
+     disktype: ssd
+</code></pre><p>&#x90E8;&#x7F72;Deployment&#x5E76;&#x67E5;&#x770B;Pod&#x7684;&#x8FD0;&#x884C;&#x8282;&#x70B9;&#xFF0C;&#x67E5;&#x770B;&#x526F;&#x672C;&#x662F;&#x5426;&#x5168;&#x90E8;&#x8FD0;&#x884C;&#x5728;node1&#x4E0A;</p>
+<pre><code>kubectl appl -f nginx.yml
+kuberctl get pod -o wide
+</code></pre><p><strong>&#x5220;&#x9664;label disktype</strong></p>
+<pre><code>kubectl label node k8s-node1 disktype-    #-&#x5373;&#x5220;&#x9664;&#x610F;&#x601D;
+kubectl get node --show-labels###
+</code></pre><p>&#x6B64;&#x65F6;Pod&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x90E8;&#x7F72;&#xFF0C;&#x9664;&#x975E;&#x5220;&#x9664;yml&#x4E2D;&#x7684;nodeSelector,&#x4E14;&#x901A;&#x8FC7;kubectl apply&#x91CD;&#x65B0;&#x90E8;&#x7F72;</p>
+<h2 id="daemonset"><a name="daemonset" class="anchor-navigation-ex-anchor" href="#daemonset"><i class="fa fa-link" aria-hidden="true"></i></a>DaemonSet</h2>
+<p>Deployment&#x90E8;&#x7F72;&#x7684;&#x526F;&#x672C;Pod&#x4F1A;&#x5206;&#x5E03;&#x5728;&#x5404;&#x4E2A;Node&#x4E0A;&#xFF0C;&#x6BCF;&#x4E2A;Node&#x90FD;&#x53EF;&#x80FD;&#x8FD0;&#x884C;&#x597D;&#x51E0;&#x4E2A;&#x526F;&#x672C;&#x3002;</p>
+<p>DaemonSet&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#x5728;&#x4E8E;<strong>&#x6BCF;&#x4E2A;Node&#x6700;&#x591A;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x526F;&#x672C;</strong></p>
+<p><strong><em>&#x9002;&#x7528;&#x573A;&#x666F;</em></strong></p>
+<p>1.&#x5728;&#x96C6;&#x7FA4;&#x7684;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x5B58;&#x50A8;Daemon</p>
+<p>2.&#x5728;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#x6536;&#x96C6;Daemon</p>
+<p>3.&#x5728;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x76D1;&#x63A7;Daemon</p>
+<p>K8s&#x81EA;&#x5DF1;&#x5C31;&#x7528;DaemonSet&#x8FD0;&#x884C;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;</p>
+<pre><code>kubectl get daemonset --namespace=kube-system
+</code></pre><p>kube-flannel&#x548C;kube-proxy&#x5206;&#x522B;&#x8D1F;&#x8D23;&#x5728;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x5FC5;&#x987B;&#x6307;&#x5B9A;--namespace=kube-system&#xFF0C;&#x8868;&#x793A;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x9ED8;&#x8BA4;namespace default&#x8D44;&#x6E90;</p>
+<h4 id="kube-flannel"><a name="kube-flannel" class="anchor-navigation-ex-anchor" href="#kube-flannel"><i class="fa fa-link" aria-hidden="true"></i></a>kube-flannel</h4>
+<h4 id="kube-proxy"><a name="kube-proxy" class="anchor-navigation-ex-anchor" href="#kube-proxy"><i class="fa fa-link" aria-hidden="true"></i></a>kube-proxy</h4>
+<p>&#x65E0;&#x6CD5;&#x62FF;&#x5230;yaml&#x6587;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x914D;&#x7F6E;</p>
+<pre><code>kubectl edit daemonset kube-proxy --namespace=kube-system
+</code></pre><h4 id="&#x8FD0;&#x884C;&#x81EA;&#x5DF1;&#x7684;daemonset"><a name="&#x8FD0;&#x884C;&#x81EA;&#x5DF1;&#x7684;daemonset" class="anchor-navigation-ex-anchor" href="#&#x8FD0;&#x884C;&#x81EA;&#x5DF1;&#x7684;daemonset"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FD0;&#x884C;&#x81EA;&#x5DF1;&#x7684;Daemonset</h4>
+<h2 id="job"><a name="job" class="anchor-navigation-ex-anchor" href="#job"><i class="fa fa-link" aria-hidden="true"></i></a>Job</h2>
+<p>&#x5BB9;&#x5668;&#x6309;&#x6301;&#x7EED;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x53EF;&#x5206;&#x4E3A;&#x4E24;&#x7C7B;&#xFF1A;</p>
+<p><strong><em>&#x670D;&#x52A1;&#x7C7B;&#x5BB9;&#x5668;</em></strong></p>
+<p>&#x6301;&#x7EED;&#x63D0;&#x4F9B;&#x670D;&#x52A1; &#xFF0C;&#x9700;&#x8981;&#x4E00;&#x76F4;&#x8FD0;&#x884C;</p>
+<p><strong><em>&#x5DE5;&#x4F5C;&#x7C7B;&#x5BB9;&#x5668;</em></strong></p>
+<p>&#x4E00;&#x6B21;&#x6027;&#x4EFB;&#x52A1;</p>
+<pre><code>kubectl get job
+#Pod&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x4F1A;&#x81EA;&#x52A8;&#x9000;&#x51FA;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x52A0;&#x4E0A;--show-all&#x67E5;&#x770B;Completed&#x72B6;&#x6001;&#x7684;Pod
+kubectl get pod --show-all
+#&#x67E5;&#x770B;Pob&#x6807;&#x51C6;&#x8F93;&#x51FA;
+kubectl logs PodName
+#&#x67E5;&#x770B;&#x67D0;&#x4E2A;Pod&#x542F;&#x52A8;&#x65E5;&#x5FD7;
+kubectl describe pod
+</code></pre><p><strong><em>YAML&#x6587;&#x4EF6;&#x6CE8;&#x610F;&#x70B9;</em></strong></p>
+<p>restartPolicy:Never/OnFailure</p>
+<h4 id="job&#x5E76;&#x884C;&#x6027;"><a name="job&#x5E76;&#x884C;&#x6027;" class="anchor-navigation-ex-anchor" href="#job&#x5E76;&#x884C;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>Job&#x5E76;&#x884C;&#x6027;</h4>
+<p>Yaml&#x6DFB;&#x52A0;</p>
+<pre><code>#&#x5E76;&#x884C;&#x6570;
+parallelism:2
+#&#x8BBE;&#x7F6E;&#x603B;&#x5171;&#x5B8C;&#x6210;&#x6570;
+completions:6
+</code></pre><p>&#x4E0D;&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;1</p>
+<h2 id="&#x5B9A;&#x65F6;job"><a name="&#x5B9A;&#x65F6;job" class="anchor-navigation-ex-anchor" href="#&#x5B9A;&#x65F6;job"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9A;&#x65F6;Job</h2>
+<p>CronJob</p>
+<pre><code>apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+    name: hello
+spec:
+    schedule: cron&#x8868;&#x8FBE;&#x5F0F;
+    jobTemplate:
+     spec:
+      template:
+       spec:
+        containers:
+         name: hello
+         image: busybox
+         command: [&quot;echo&quot;,&quot;hello k8s job&quot;]
+        restartPolicy: OnFailure
+</code></pre><p>&#x7B2C;&#x4E00;&#x6B21;kubectl apply -f cronjob.yml&#x80AF;&#x5B9A;&#x5931;&#x8D25;&#xFF1A;</p>
+<p>K8S&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;enable CronJob&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x5728;kube-apiserver&#x52A0;&#x5165;&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x4FEE;&#x6539;kube-apiserver&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<p>/etc/kubernetes/manifests/kube-apiserver.yaml</p>
+<p>&#x542F;&#x52A8;&#x53C2;&#x6570;&#x4E2D;&#x52A0;&#x4E0A;--runtime-config=apiVersion=true&#x5373;&#x53EF;&#xFF0C;&#x91CD;&#x542F;kubelet&#x670D;&#x52A1;</p>
+<pre><code>systemctl restart kubelet.service
+</code></pre><p>kubelet&#x4F1A;&#x91CD;&#x542F;kube-apiserver Pod</p>
+<pre><code>#&#x786E;&#x8BA4;kube-apiserver&#x652F;&#x6301;apiVersion
+kubectl api-versions
+#&#x67E5;&#x770B;CronJob&#x72B6;&#x6001;
+kubectl get cronjob
+#&#x67E5;&#x770B;job
+kubectl get jobs
+</code></pre><footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <em>Dazzle Lin</em> </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2019-07-02 22:22:14 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="部署应用.html" class="navigation navigation-prev " aria-label="Previous page: 部署应用">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="通过Service访问Pod.html" class="navigation navigation-next " aria-label="Next page: 通过Service访问Pod">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"运行应用","level":"1.5.2","depth":2,"next":{"title":"通过Service访问Pod","level":"1.5.3","depth":2,"path":"Chapter4/通过Service访问Pod.md","ref":"Chapter4/通过Service访问Pod.md","articles":[]},"previous":{"title":"部署应用","level":"1.5.1","depth":2,"path":"Chapter4/部署应用.md","ref":"Chapter4/部署应用.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","search-pro","github","chapter-fold","code","copy-code-button","splitter","page-footer-ex","simple-page-toc","anchor-navigation-ex","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/linqinye"},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"page-footer-ex":{"copyright":"By <em>Dazzle Lin</em>","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Dazzle","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"编写docker学习笔记","language":"zh-hans","gitbook":"*","description":"编写docker学习笔记"},"file":{"path":"Chapter4/运行应用.md","mtime":"2019-07-02T14:22:14.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T04:13:45.732Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

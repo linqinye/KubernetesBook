@@ -1,0 +1,939 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Helm-k8s的包管理工具 · 编写docker学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Dazzle">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../Chapter6/网络.html" />
+    
+    
+    <link rel="prev" href="../Chapter4/数据管理.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter1/跑起来.html">
+            
+                <a href="../Chapter1/跑起来.html">
+            
+                    
+                    跑起来
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter2/概念.html">
+            
+                <a href="../Chapter2/概念.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter3/部署Kubernetes Cluster.html">
+            
+                <a href="../Chapter3/部署Kubernetes Cluster.html">
+            
+                    
+                    部署Kubernetes Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../Chapter4/kubernetes架构.html">
+            
+                <a href="../Chapter4/kubernetes架构.html">
+            
+                    
+                    kubernetes架构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Chapter4/部署应用.html">
+            
+                <a href="../Chapter4/部署应用.html">
+            
+                    
+                    部署应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../Chapter4/运行应用.html">
+            
+                <a href="../Chapter4/运行应用.html">
+            
+                    
+                    运行应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../Chapter4/通过Service访问Pod.html">
+            
+                <a href="../Chapter4/通过Service访问Pod.html">
+            
+                    
+                    通过Service访问Pod
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../Chapter4/Rolling Update.html">
+            
+                <a href="../Chapter4/Rolling Update.html">
+            
+                    
+                    Rolling Update
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../Chapter4/Health Check.html">
+            
+                <a href="../Chapter4/Health Check.html">
+            
+                    
+                    Health Check
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../Chapter4/数据管理.html">
+            
+                <a href="../Chapter4/数据管理.html">
+            
+                    
+                    数据管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="Helm-k8s的包管理工具.html">
+            
+                <a href="Helm-k8s的包管理工具.html">
+            
+                    
+                    Helm-k8s的包管理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../Chapter6/网络.html">
+            
+                <a href="../Chapter6/网络.html">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../Chapter7/Kubernetes Dashboard.html">
+            
+                <a href="../Chapter7/Kubernetes Dashboard.html">
+            
+                    
+                    Kubernetes Dashboard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../Chapter8/Kubernetes集群监控.html">
+            
+                <a href="../Chapter8/Kubernetes集群监控.html">
+            
+                    
+                    Kubernetes集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../Chapter9/Kubernetes集群日志管理.html">
+            
+                <a href="../Chapter9/Kubernetes集群日志管理.html">
+            
+                    
+                    Kubernetes集群日志管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Chapter10/K8S常用命令.html">
+            
+                <a href="../Chapter10/K8S常用命令.html">
+            
+                    
+                    K8S常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../Chapter11/apply部署过程.html">
+            
+                <a href="../Chapter11/apply部署过程.html">
+            
+                    
+                    apply部署过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Helm-k8s的包管理工具</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;"><b></b>Helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#helm&#x67B6;&#x6784;"><b></b>Helm&#x67B6;&#x6784;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#chart"><b></b>chart</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#release"><b></b>release</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;"><b></b>helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;"><b></b>Helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;"><b></b>Helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;"><b></b>Tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5B89;&#x88C5;helm"><b></b>&#x5B89;&#x88C5;Helm</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#tiller&#x670D;&#x52A1;&#x5668;"><b></b>Tiller&#x670D;&#x52A1;&#x5668;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F7F;&#x7528;helm"><b></b>&#x4F7F;&#x7528;Helm</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#chart_1"><b></b>chart</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#chart&#x6A21;&#x677F;"><b></b>chart&#x6A21;&#x677F;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart"><b></b>&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release"><b></b>&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart"><b></b>&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart</a></li></ul></ul></ul></div><a href="#helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;"><a name="helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>Helm-k8s&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;</h1>
+<p>KS8&#x80FD;&#x591F;&#x5F88;&#x597D;&#x7684;&#x7EC4;&#x7EC7;&#x548C;&#x7F16;&#x6392;&#x5BB9;&#x5668;&#xFF0C;&#x4F46;&#x5B83;&#x7F3A;&#x5C11;&#x4E00;&#x4E2A;&#x66F4;&#x9AD8;&#x5C42;&#x6B21;&#x5F97;&#x5E94;&#x7528;&#x6253;&#x5305;&#x5DE5;&#x5177;&#xFF0C;Helm&#x5C31;&#x662F;&#x5E72;&#x8FD9;&#x4EF6;&#x4E8B;</p>
+<p>Mysql&#x670D;&#x52A1;</p>
+<p>1.Service,&#x8BA9;&#x5916;&#x754C;&#x80FD;&#x591F;&#x8BBF;&#x95EE;&#x5230;MYSQL</p>
+<pre><code>apiversion: v1
+kind: Service
+metadata:
+ name: my-mysql
+ labels:
+  app: my-mysql
+spec:
+ ports:
+ - name: mysql
+   port: 3306
+   targetPort: mysql
+ selector:
+   app: my-mysql
+</code></pre><p>2.secret,&#x5B9A;&#x4E49;mysql&#x5BC6;&#x7801;</p>
+<pre><code>apiversion: v1
+kind: Secret
+metadata:
+ name: my-mysql
+ labels:
+  app: my-mysql
+type: Opaque
+data: 
+ mysql-root-password: &quot;&quot;
+ mysql-password: &quot;&quot;
+</code></pre><p>3.PersistentVolumeClaim&#x4E3A;mysql&#x7533;&#x8BF7;&#x6301;&#x4E45;&#x5316;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;</p>
+<pre><code>kind: PersistentVolumeClaim
+apiversion: v1
+metadata:
+ name: my-mysql
+ labels:
+  app: my-mysql
+spec:
+ accessModes:
+  - &quot;ReadWriteOnce&quot;
+ resources:
+  request:
+   storage: &quot;8Gi&quot;
+</code></pre><p>4.Deployment,&#x90E8;&#x7F72;mysql Pod</p>
+<pre><code>apiversion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: my-mysql
+ labels:
+  app: my-mysql
+spec:
+ template:
+  metadata:
+   labels:
+    app: my-mysql
+  spec:
+   containers:
+   - name: my-mysql
+     image: &quot;mysql:5.7.14&quot;
+     env:
+     - name: MYSQL_ROOT_PASSWORD
+       volueFrom:
+        secretKeyRef:
+         name: my-mysql
+         key: mysql-root-password
+     - name: MYSQL_PASSWORD
+       volueFrom:
+        secretKeyRef:
+         name: my-mysql
+         key: mysql-password
+     - name: MYSQL_USER
+       value: &quot;&quot;
+     - name: MYSQL_DATABASE
+       value: &#x201C;&#x201D;
+     ports:
+     - name: mysql
+       containerPort: 3306
+     volumeMounts:
+     - name: data
+       mountPath: /var/lib/mysql
+   volumes:
+   - name: data
+     persistentVolumeClaim:
+       claimName: my-mysql
+</code></pre><h2 id="helm&#x67B6;&#x6784;"><a name="helm&#x67B6;&#x6784;" class="anchor-navigation-ex-anchor" href="#helm&#x67B6;&#x6784;"><i class="fa fa-link" aria-hidden="true"></i></a>Helm&#x67B6;&#x6784;</h2>
+<h3 id="chart"><a name="chart" class="anchor-navigation-ex-anchor" href="#chart"><i class="fa fa-link" aria-hidden="true"></i></a>chart</h3>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x5F97;&#x4FE1;&#x606F;&#x96C6;&#x5408;&#xFF0C;&#x5305;&#x62EC;&#x5404;&#x79CD;K8S&#x5BF9;&#x8C61;&#x5F97;&#x914D;&#x7F6E;&#x6A21;&#x677F;&#x3001;&#x53C2;&#x6570;&#x5B9A;&#x4E49;&#x3001;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x3001;&#x6587;&#x6863;&#x8BF4;&#x660E;&#x7B49;&#x3002;chart&#x662F;&#x5E94;&#x7528;&#x90E8;&#x7F72;&#x5F97;&#x81EA;&#x5305;&#x542B;&#x903B;&#x8F91;&#x5355;&#x5143;&#x3002;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x6210;apt&#x3001;yum&#x4E2D;&#x5F97;&#x8F6F;&#x4EF6;&#x5B89;&#x88C5;&#x5305;</p>
+<h3 id="release"><a name="release" class="anchor-navigation-ex-anchor" href="#release"><i class="fa fa-link" aria-hidden="true"></i></a>release</h3>
+<p>chart&#x7684;&#x8FD0;&#x884C;&#x5B9E;&#x4F8B;&#xFF0C;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;&#x3002;&#x5F53;chart&#x88AB;&#x5B89;&#x88C5;&#x5230;k8s&#x96C6;&#x7FA4;&#xFF0C;&#x5C31;&#x751F;&#x6210;&#x4E00;&#x4E2A;release&#x3002;chart&#x80FD;&#x591F;&#x591A;&#x6B21;&#x5B89;&#x88C5;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x96C6;&#x7FA4;&#xFF0C;&#x6BCF;&#x6B21;&#x5B89;&#x88C5;&#x90FD;&#x662F;&#x4E00;&#x4E2A;release</p>
+<h3 id="helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;"><a name="helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;" class="anchor-navigation-ex-anchor" href="#helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;"><i class="fa fa-link" aria-hidden="true"></i></a>helm&#x80FD;&#x591F;&#x505A;&#x4EC0;&#x4E48;</h3>
+<p>1.&#x4ECE;&#x96F6;&#x521B;&#x5EFA;chart</p>
+<p>2.&#x4E0E;&#x5B58;&#x50A8;chart&#x7684;&#x4ED3;&#x5E93;&#x4EA4;&#x4E92;&#xFF0C;&#x62C9;&#x53D6;&#x3001;&#x4FDD;&#x5B58;&#x548C;&#x66F4;&#x65B0;chart</p>
+<p>3.&#x5728;k8s&#x96C6;&#x7FA4;&#x4E2D;&#x5B89;&#x88C5;&#x548C;&#x5378;&#x8F7D;release</p>
+<p>4.&#x66F4;&#x65B0;&#x3001;&#x56DE;&#x6EDA;&#x548C;&#x6D4B;&#x8BD5;release</p>
+<h2 id="helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;"><a name="helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>Helm&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#xFF1A;</h2>
+<h3 id="helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;"><a name="helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;" class="anchor-navigation-ex-anchor" href="#helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>Helm&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x7BA1;&#x7406;chart&#xFF09;</h3>
+<p>&#x7EC8;&#x7AEF;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
+<p>1.&#x5728;&#x672C;&#x5730;&#x5F00;&#x53D1;chart</p>
+<p>2.&#x7BA1;&#x7406;chart&#x4ED3;&#x5E93;</p>
+<p>3.&#x4E0E;Tiller&#x670D;&#x52A1;&#x5668;&#x4EA4;&#x4E92;</p>
+<p>4.&#x5728;&#x8FDC;&#x7A0B;K8S&#x96C6;&#x7FA4;&#x5B89;&#x88C5;chart</p>
+<p>5.&#x67E5;&#x770B;release&#x4FE1;&#x606F;</p>
+<p>6.&#x5347;&#x7EA7;&#x6216;&#x5378;&#x8F7D;&#x5DF2;&#x6709;release</p>
+<h3 id="tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;"><a name="tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;" class="anchor-navigation-ex-anchor" href="#tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>Tiller&#x670D;&#x52A1;&#x5668;&#xFF08;&#x7BA1;&#x7406;release&#xFF09;</h3>
+<p>&#x8FD0;&#x884C;&#x5728;k8s&#x96C6;&#x7FA4;&#x4E0A;&#xFF0C;&#x4F1A;&#x5904;&#x7406;Helm&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#xFF0C;&#x4E0E;K8S APIserver&#x4EA4;&#x4E92;</p>
+<p>1.&#x76D1;&#x542C;&#x6765;&#x81EA;Helm&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;</p>
+<p>2.&#x901A;&#x8FC7;chart&#x6784;&#x5EFA;release</p>
+<p>3.&#x5728;K8S&#x4E2D;&#x5B89;&#x88C5;chart,&#x5E76;&#x8DDF;&#x8E2A;release&#x72B6;&#x6001;</p>
+<p>4.&#x901A;&#x8FC7;APIserver&#x5347;&#x7EA7;&#x6216;&#x5378;&#x8F7D;&#x5DF2;&#x6709;release</p>
+<h2 id="&#x5B89;&#x88C5;helm"><a name="&#x5B89;&#x88C5;helm" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;helm"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;Helm</h2>
+<p>&#x5C06;Helm&#x5BA2;&#x6237;&#x7AEF;&#x5B89;&#x88C5;&#x5728;&#x80FD;&#x6267;&#x884C;kubectl&#x547D;&#x4EE4;&#x7684;&#x8282;&#x70B9;&#x4E0A;&#x3002;</p>
+<pre><code>[docker@k8s-master ~]$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  7028  100  7028    0     0   6316      0  0:00:01  0:00:01 --:--:--  6320
+Helm v2.14.0 is already latest
+Run &apos;helm init&apos; to configure helm.
+[docker@k8s-master ~]$ helm version
+Client: &amp;version.Version{SemVer:&quot;v2.14.0&quot;, GitCommit:&quot;05811b84a3f93603dd6c2fcfe57944dfa7ab7fd0&quot;, GitTreeState:&quot;clean&quot;}
+Error: could not find tiller
+
+wget https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-linux-amd64.tar.gz
+tar xf helm-v2.9.1-linux-amd64.tar.gz
+mv linux-amd64/helm /usr/local/bin
+rm -rf linux-amd64# &#x67E5;&#x770B;&#x7248;&#x672C;&#xFF0C;&#x4E0D;&#x663E;&#x793A;&#x51FA;server&#x7248;&#x672C;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD8;&#x6CA1;&#x6709;&#x5B89;&#x88C5;serverhelm version
+</code></pre><p>&#x5B89;&#x88C5;helm&#x7684;bash&#x547D;&#x4EE4;&#x8865;&#x5168;&#x811A;&#x672C;</p>
+<pre><code>helm completion bash &gt; .helmrc echo &quot;source .helmrc&quot; &gt;&gt; .bashrc
+</code></pre><p>&#x91CD;&#x65B0;&#x767B;&#x5F55; &#x53EF;&#x4EE5;Tab&#x8865;&#x5168;&#x4E86;</p>
+<h2 id="tiller&#x670D;&#x52A1;&#x5668;"><a name="tiller&#x670D;&#x52A1;&#x5668;" class="anchor-navigation-ex-anchor" href="#tiller&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>Tiller&#x670D;&#x52A1;&#x5668;</h2>
+<pre><code>#&#x5220;&#x9664;Tiller
+kubectl get all --all-namespaces | grep tiller
+kubectl get all -n kube-system -l app=helm -o name|xargs kubectl delete -n kube-system
+#&#x63D0;&#x524D;&#x62C9;&#x53BB;&#x955C;&#x50CF;gcr.io/kubernetes-helm/tiller:v2.14.0
+docker pull sapcc/tiller:v2.14.0
+docker tag sapcc/tiller:v2.14.0 gcr.io/kubernetes-helm/tiller:v2.14.0
+#&#x5B89;&#x88C5;tiller
+helm init
+
+kubectl get --namespace=kube-system pod
+kubectl describe pod tiller-deploy-f8c677c4-68v78 -n kube-system
+#&#x5982;&#x679C;&#x4ECD;&#x7136;&#x56E0;&#x4E3A;&#x7F51;&#x7EDC;&#x62C9;&#x53D6;&#x4E0D;&#x4E0B;&#x6765;
+kubectl edit deploy tiller-deploy -n kube-system
+&#x5C06; image gcr.io/kubernetes-helm/tiller:v2.14.0  &#x66FF;&#x6362;&#x6210;   image: sapcc/tiller:v2.14.0
+#&#x4FDD;&#x5B58;&#x540E;&#xFF0C;kubernetes&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6548;&#xFF0C;&#x518D;&#x6B21;&#x67E5;&#x770B;pod&#xFF0C;&#x5DF2;&#x7ECF;&#x5904;&#x4E8E;running&#x72B6;&#x6001;&#x4E86;
+kubectl get pod -n kube-system
+</code></pre><p>&#x6210;&#x529F;&#x6807;&#x5FD7;</p>
+<pre><code>[docker@k8s-master ~]$ helm version
+Client: &amp;version.Version{SemVer:&quot;v2.14.0&quot;, GitCommit:&quot;05811b84a3f93603dd6c2fcfe57944dfa7ab7fd0&quot;, GitTreeState:&quot;clean&quot;}
+Server: &amp;version.Version{SemVer:&quot;v2.14.0&quot;, GitCommit:&quot;05811b84a3f93603dd6c2fcfe57944dfa7ab7fd0&quot;, GitTreeState:&quot;clean&quot;}
+</code></pre><p>Tiller&#x672C;&#x8EAB;&#x4F5C;&#x4E3A;&#x5BB9;&#x5668;&#x5316;&#x5E94;&#x7528;&#x8FD0;&#x884C;&#x5728;k8s cluster&#x4E2D;</p>
+<pre><code>kubectl get --namespace=kube-system deployment
+kubectl get --namespace=kube-system svc&#xFF08;service&#xFF09;
+kubectl get --namespace=kube-system pod
+
+#&#x67E5;&#x770B;pod&#x9519;&#x8BEF;
+kubectl describe pod tiller-deploy-765dcb8745-76vqm -n kube-system
+
+gcr.io/kubernetes-helm/tiller:v2.14.0
+</code></pre><h2 id="&#x4F7F;&#x7528;helm"><a name="&#x4F7F;&#x7528;helm" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;helm"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;Helm</h2>
+<pre><code>#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x53EF;&#x5B89;&#x88C5;&#x7684;chart
+helm search
+helm repo list
+#&#x6DFB;&#x52A0;&#x4ED3;&#x5E93;
+helm repo add
+#&#x5B89;&#x88C5;chart
+helm install &#x8F6F;&#x4EF6;name&#xFF08;stable/mysql&#xFF09;
+</code></pre><p>&#x5B89;&#x88C5;&#x5982;&#x679C;&#x6743;&#x9650;&#x4E0D;&#x8DB3;&#xFF0C;&#x6DFB;&#x52A0;&#x6743;&#x9650;</p>
+<pre><code>[docker@k8s-master ~]$ helm install stable/mysql
+Error: no available release name found
+[docker@k8s-master ~]$
+</code></pre><p>&#x6DFB;&#x52A0;&#x6743;&#x9650;</p>
+<pre><code>kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl patch deploy --namespace kube-system tiller-deploy -p&apos;{&quot;spec&quot;:{&quot;template&quot;:{&quot;spec&quot;:{&quot;serviceAccount&quot;:&quot;tiller&quot;}}}}&apos;
+</code></pre><p><strong><em>&#x89E3;&#x6790;</em></strong></p>
+<pre><code>[docker@k8s-master ~]$ helm install stable/mysql
+#chart&#x672C;&#x6B21;&#x90E8;&#x7F72;&#x7684;&#x63CF;&#x8FF0;&#x4FE1;&#x606F;
+#release&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x6CA1;&#x7528;-n&#xFF0C;&#x56E0;&#x6B64;Helm&#x968F;&#x673A;&#x751F;&#x6210;&#x4E00;&#x4E2A;
+NAME:   agile-sheep
+LAST DEPLOYED: Tue May 28 21:27:22 2019
+#release&#x90E8;&#x7F72;&#x7684;namespace&#xFF0C;&#x9ED8;&#x8BA4;default&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;--namespace&#x6307;&#x5B9A;
+NAMESPACE: default
+#DEPLOYED&#xFF0C;&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x5C06;chart&#x90E8;&#x7F72;&#x5230;&#x96C6;&#x7FA4;
+STATUS: DEPLOYED
+
+#&#x5F53;&#x524D;release&#x5305;&#x542B;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x547D;&#x540D;&#x683C;&#x5F0F;&#x4E3A;ReleaseName-ChartName
+RESOURCES:
+==&gt; v1/PersistentVolumeClaim
+NAME               STATUS   VOLUME  CAPACITY  ACCESS MODES  STORAGECLASS  AGE
+agile-sheep-mysql  Pending  0s
+
+==&gt; v1/Pod(related)
+NAME                               READY  STATUS   RESTARTS  AGE
+agile-sheep-mysql-d9787fcd4-89ktn  0/1    Pending  0         0s
+
+==&gt; v1/Secret
+NAME               TYPE    DATA  AGE
+agile-sheep-mysql  Opaque  2     0s
+
+==&gt; v1/Service
+NAME               TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)   AGE
+agile-sheep-mysql  ClusterIP  10.104.230.48  &lt;none&gt;       3306/TCP  0s
+
+==&gt; v1beta1/Deployment
+NAME               READY  UP-TO-DATE  AVAILABLE  AGE
+agile-sheep-mysql  0/1    1           0          0s
+
+#release&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;
+NOTES:
+MySQL can be accessed via port 3306 on the following DNS name from within your cluster:
+agile-sheep-mysql.default.svc.cluster.local
+
+To get your root password run:
+
+    MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace default agile-sheep-mysql -o jsonpath=&quot;{.data.mysql-root-password}&quot; | base64 --decode; echo)
+
+To connect to your database:
+
+1. Run an Ubuntu pod that you can use as a client:
+
+    kubectl run -i --tty ubuntu --image=ubuntu:16.04 --restart=Never -- bash -il
+
+2. Install the mysql client:
+
+    $ apt-get update &amp;&amp; apt-get install mysql-client -y
+
+3. Connect using the mysql cli, then provide your password:
+    $ mysql -h agile-sheep-mysql -p
+
+To connect to your database directly from outside the K8s cluster:
+    MYSQL_HOST=127.0.0.1
+    MYSQL_PORT=3306
+
+    # Execute the following commands to route the connection:
+    export POD_NAME=$(kubectl get pods --namespace default -l &quot;app=agile-sheep-mysql&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
+    kubectl port-forward $POD_NAME 3306:3306
+
+    mysql -h ${MYSQL_HOST} -P${MYSQL_PORT} -u root -p${MYSQL_ROOT_PASSWORD}
+</code></pre><p>&#x901A;&#x8FC7;kubectl get&#x67E5;&#x770B;release&#x5404;&#x4E2A;&#x5BF9;&#x8C61;</p>
+<pre><code>[docker@k8s-master ~]$ kubectl get service agile-sheep-mysql
+NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+agile-sheep-mysql   ClusterIP   10.104.230.48   &lt;none&gt;        3306/TCP   5m4s
+[docker@k8s-master ~]$ kubectl get deployment agile-sheep-mysql
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+agile-sheep-mysql   0/1     1            0           5m18s
+[docker@k8s-master ~]$ kubectl get pvc agile-sheep-mysql
+NAME                STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+agile-sheep-mysql   Pending                                                     5m46s
+</code></pre><p>&#x672A;&#x51C6;&#x5907;PersistentVolume&#xFF0C;&#x56E0;&#x6B64;&#x5F53;&#x524D;release&#x4E0D;&#x53EF;&#x7528;</p>
+<pre><code>#helm list&#x663E;&#x793A;&#x5DF2;&#x7ECF;&#x90E8;&#x7F72;&#x7684;release
+[docker@k8s-master ~]$ helm list
+#helm delete&#x53EF;&#x4EE5;&#x5220;&#x9664;release
+[docker@k8s-master ~]$ helm delete agile-sheep
+</code></pre><h2 id="chart_1"><a name="chart_1" class="anchor-navigation-ex-anchor" href="#chart_1"><i class="fa fa-link" aria-hidden="true"></i></a>chart</h2>
+<p>chart&#x662F;Helm&#x7684;&#x5E94;&#x7528;&#x6253;&#x5305;&#x683C;&#x5F0F;&#xFF0C;&#x7531;&#x4E00;&#x7CFB;&#x5217;&#x6587;&#x4EF6;&#x7EC4;&#x6210;&#x3002;&#x53EF;&#x4EE5;&#x5F88;&#x7B80;&#x5355;&#x53EA;&#x90E8;&#x7F72;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F88;&#x8D1F;&#x8D23;&#x90E8;&#x7F72;&#x4E00;&#x4E2A;&#x5E94;&#x7528;</p>
+<p>chart&#x5C06;&#x6587;&#x4EF6;&#x653E;&#x7F6E;&#x5728;&#x9884;&#x5B9A;&#x4E49;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x6574;&#x4E2A;chart&#x88AB;&#x6253;&#x6210;tar&#x5305;&#xFF0C;&#x800C;&#x4E14;&#x6807;&#x6CE8;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x4FBF;&#x4E8E;Helm&#x90E8;&#x7F72;</p>
+<pre><code>#&#x4E00;&#x65E6;&#x5B89;&#x88C5;&#x4E86;chart&#xFF0C;&#x5373;&#x53EF;&#x67E5;&#x770B;tar&#x5305;
+[docker@k8s-master ~]$ ls ~/.helm/cache/archive/
+mysql-0.3.5.tgz
+</code></pre><p>&#x76EE;&#x5F55;&#x540D;&#x5C31;&#x662F;chart&#x540D;&#x5B57;&#xFF08;&#x4E0D;&#x5E26;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF09;</p>
+<p>1.Chart.yaml:&#x63CF;&#x8FF0;chart&#x6982;&#x8981;&#xFF0C;name&#x548C;version&#x5FC5;&#x586B;</p>
+<p>2.README.md:&#x76F8;&#x5F53;&#x4E8E;chart&#x4F7F;&#x7528;&#x6587;&#x6863;</p>
+<p>3.LICENSE:&#x6587;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x63CF;&#x8FF0;chart&#x7684;&#x8BB8;&#x53EF;&#x4FE1;&#x606F;</p>
+<p>4.requirements.yaml:&#x901A;&#x8FC7;&#x8BE5;&#x6587;&#x4EF6;&#x6307;&#x5B9A;chart&#x4F9D;&#x8D56;&#x7684;&#x5176;&#x4ED6;chart,&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F9D;&#x8D56;&#x7684;chart&#x4E5F;&#x88AB;&#x4E00;&#x8D77;&#x5B89;&#x88C5;</p>
+<p>5.values.yaml:chart&#x652F;&#x6301;&#x5728;&#x5B89;&#x88C5;&#x65F6;&#x6839;&#x636E;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x5B9A;&#x5236;&#x5316;&#x914D;&#x7F6E;&#xFF0C;&#x800C;&#x8BE5;&#x6587;&#x4EF6;&#x63D0;&#x4F9B; &#x4E86;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;</p>
+<p>6.templates&#x76EE;&#x5F55;&#xFF1A;&#x5404;&#x7C7B;K8S&#x8D44;&#x6E90;&#x7684;&#x914D;&#x7F6E;&#x6A21;&#x677F;&#x90FD;&#x653E;&#x7F6E;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;Helm&#x4F1A;&#x5C06;values.yaml&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x503C;&#x6CE8;&#x5165;&#x6A21;&#x677F;&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x6807;&#x51C6;&#x7684;YAML&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<p>&#x6A21;&#x677F;&#x65F6;chart&#x6700;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x4E5F;&#x662F;Helm&#x6700;&#x5F3A;&#x5927;&#x7684;&#x90E8;&#x5206;&#x3002;&#x6A21;&#x677F;&#x589E;&#x52A0;&#x4E86;&#x5E94;&#x7528;&#x90E8;&#x7F72;&#x7075;&#x6D3B;&#x6027;</p>
+<p>7.templates/NOTES.txt:chart&#x7684;&#x7B80;&#x6613;&#x4F7F;&#x7528;&#x6587;&#x6863;&#xFF0C;chart&#x5B89;&#x88C5;&#x6210;&#x529F;&#x540E;&#x663E;&#x793A;&#x6B64;&#x6587;&#x6863;&#x5185;&#x5BB9;</p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x8BE5;&#x6587;&#x4EF6;&#x4E2D;&#x63D2;&#x5165;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;Helm&#x4F1A;&#x52A8;&#x6001;&#x6CE8;&#x5165;&#x53C2;&#x6570;&#x503C;</p>
+<h3 id="chart&#x6A21;&#x677F;"><a name="chart&#x6A21;&#x677F;" class="anchor-navigation-ex-anchor" href="#chart&#x6A21;&#x677F;"><i class="fa fa-link" aria-hidden="true"></i></a>chart&#x6A21;&#x677F;</h3>
+<p>Go&#x8BED;&#x8A00;&#x6A21;&#x677F;&#x7F16;&#x5199;chart</p>
+<pre><code>{{template &quot;mysql.fullname&quot;}}
+</code></pre><p>&#x5B9A;&#x4E49;Secret&#x7684;name&#x3002;template &#x4F5C;&#x7528;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x5B50;&#x6A21;&#x7248;&#x3002;&#x5B50;&#x6A21;&#x7248;&#x5728;templates/_helpers.tp1&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#x591A;&#x4E2A;&#x6A21;&#x677F;&#x4F7F;&#x7528;&#xFF0C;&#x5219;&#x53EF;&#x5728;templates/_helpers.tp1&#x4E2D;&#x5B9A;&#x4E49;&#x5B50;&#x6A21;&#x7248;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;templates&#x51FD;&#x6570;&#x5F15;&#x7528;</p>
+<p><strong>chart&#x548C;release&#x662F;Helm&#x9884;&#x5B9A;&#x4E49;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x6BCF;&#x4E2A;&#x5BF9;&#x8C61;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;</strong></p>
+<p>&#x7565;</p>
+<pre><code>#&#x67E5;&#x770B;chart&#x7684;values.yaml&#x5185;&#x5BB9;
+helm inspect values stable/mysql
+</code></pre><pre><code>[docker@k8s-master ~]$ helm inspect values stable/mysql
+## mysql image version
+## ref: https://hub.docker.com/r/library/mysql/tags/
+##
+image: &quot;mysql&quot;
+imageTag: &quot;5.7.14&quot;
+
+## Specify password for root user
+##
+## Default: random 10 character string
+# mysqlRootPassword: testing
+
+## Create a database user
+##
+# mysqlUser:
+# mysqlPassword:
+
+## Allow unauthenticated access, uncomment to enable
+##
+# mysqlAllowEmptyPassword: true
+
+## Create a database
+##
+# mysqlDatabase:
+
+## Specify an imagePullPolicy (Required)
+## It&apos;s recommended to change this to &apos;Always&apos; if the image tag is &apos;latest&apos;
+## ref: http://kubernetes.io/docs/user-guide/images/#updating-images
+##
+imagePullPolicy: IfNotPresent
+
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
+## Persist data to a persistent volume
+persistence:
+  enabled: true
+  ## database data Persistent Volume Storage Class
+  ## If defined, storageClassName: &lt;storageClass&gt;
+  ## If set to &quot;-&quot;, storageClassName: &quot;&quot;, which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS &amp; OpenStack)
+  ##
+  # storageClass: &quot;-&quot;
+  accessMode: ReadWriteOnce
+  size: 8Gi
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+
+# Custom mysql configuration files used to override default mysql settings
+configurationFiles:
+#  mysql.cnf: |-
+#    [mysqld]
+#    skip-name-resolve
+
+
+## Configure the service
+## ref: http://kubernetes.io/docs/user-guide/services/
+service:
+  ## Specify a service type
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
+  type: ClusterIP
+  port: 3306
+  # nodePort: 32000
+</code></pre><p>&#x4E8B;&#x5148;&#x521B;&#x5EFA;&#x597D;&#x76F8;&#x5E94;PV-&gt;mysql-pv.yml</p>
+<pre><code>apiversion: v1
+kind: PersistentVolume
+metadata:
+ name: mysql-pv
+spec:
+ accessModes:
+  - ReadWriteOnce
+ capacity:
+  storage: 8Gi
+ persistentVolumeReclaimPolicy: Retain
+ nfs:
+  path: /nfsdata/mysql-pv
+  server: 192.168.56.105
+</code></pre><pre><code>kubectl apply -f mysql-pv.yml
+kubectl get pv
+</code></pre><h3 id="&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart"><a name="&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart" class="anchor-navigation-ex-anchor" href="#&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9A;&#x5236;&#x5316;&#x5B89;&#x88C5;chart</h3>
+<h4 id="helm&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4F20;&#x9012;&#x914D;&#x7F6E;&#x53C2;&#x6570;"><a name="helm&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4F20;&#x9012;&#x914D;&#x7F6E;&#x53C2;&#x6570;" class="anchor-navigation-ex-anchor" href="#helm&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4F20;&#x9012;&#x914D;&#x7F6E;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>Helm&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4F20;&#x9012;&#x914D;&#x7F6E;&#x53C2;&#x6570;</h4>
+<p>1.&#x6307;&#x5B9A;&#x81EA;&#x5DF1;&#x7684;values&#x6587;&#x4EF6;&#x3002;&#x901A;&#x5E38;&#x505A;&#x6CD5;</p>
+<p>&#x9996;&#x5148;&#x901A;&#x8FC7;helm inspect values mysql &gt; myvalues.yaml&#x751F;&#x6210;values&#x6587;&#x4EF6;</p>
+<p>&#x8BBE;&#x7F6E;mysqlRootPassword</p>
+<p>&#x6700;&#x540E;&#x6267;&#x884C;helm install --values=mysqlvalues.yaml mysql</p>
+<p>2.&#x901A;&#x8FC7;--set&#x76F4;&#x63A5;&#x4F20;&#x5165;&#x53C2;&#x6570;</p>
+<pre><code>#-n&#x5373;&#x8BBE;&#x7F6E;release&#x4E3A;my,&#x5404;&#x7C7B;&#x8D44;&#x6E90;&#x540D;&#x79F0;&#x5373;&#x4E3A;my-mysql
+helm install stable/mysql --set mysqlRootPassword=abc123 -n my
+#&#x901A;&#x8FC7;helm list&#x548C;helm status my&#x67E5;&#x770B;chart&#x6700;&#x65B0;&#x72B6;&#x6001;
+</code></pre><h3 id="&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release"><a name="&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release" class="anchor-navigation-ex-anchor" href="#&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5347;&#x7EA7;&#x548C;&#x56DE;&#x6EDA;release</h3>
+<p>&#x901A;&#x8FC7;--values&#x6216;--set&#x5E94;&#x7528;&#x65B0;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x5347;&#x7EA7;mysql&#x5230;5.7.15</p>
+<pre><code>helm upgrade --set imageTag=5.7.15 mystable/mysql
+kubectl get deployment my-mysql -o wide
+</code></pre><pre><code>#&#x67E5;&#x770B;release&#x6240;&#x6709;&#x7248;&#x672C;
+helm history my
+#&#x56DE;&#x6EDA;&#x5230;&#x4EFB;&#x4F55;&#x7248;&#x672C;
+helm rollback my 1
+</code></pre><h3 id="&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart"><a name="&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart" class="anchor-navigation-ex-anchor" href="#&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F00;&#x53D1;&#x81EA;&#x5DF1;&#x7684;chart</h3>
+<h4 id="&#x521B;&#x5EFA;chart"><a name="&#x521B;&#x5EFA;chart" class="anchor-navigation-ex-anchor" href="#&#x521B;&#x5EFA;chart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;chart</h4>
+<pre><code>#helm&#x4F1A;&#x5E2E;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x751F;&#x6210;&#x5404;&#x7C7B;chart&#x6587;&#x4EF6;
+helm create mychart
+</code></pre><p>&#x65B0;&#x5EFA;&#x7684;chart&#x9ED8;&#x8BA4;&#x5305;&#x542B;&#x4E00;&#x4E2A;nginx&#x5E94;&#x7528;&#x793A;&#x4F8B;</p>
+<h4 id="&#x8C03;&#x8BD5;chart"><a name="&#x8C03;&#x8BD5;chart" class="anchor-navigation-ex-anchor" href="#&#x8C03;&#x8BD5;chart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8C03;&#x8BD5;chart</h4>
+<p>Helm&#x63D0;&#x4F9B;&#x4E86;debug&#x5DE5;&#x5177;</p>
+<p>helm lint:&#x68C0;&#x6D4B;chart&#x8BED;&#x6CD5;&#xFF0C;&#x62A5;&#x544A;&#x9519;&#x8BEF;&#x4EE5;&#x53CA;&#x7ED9;&#x51FA;&#x5EFA;&#x8BAE;</p>
+<pre><code>helm lint mychart
+</code></pre><p>helm install --dry-run --debug&#xFF1A;&#x6A21;&#x62DF;&#x5B89;&#x88C5;&#x5B89;&#x88C5;chart&#xFF0C;&#x5E76;&#x8F93;&#x51FA;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x751F;&#x6210;&#x7684;YAML&#x5185;&#x5BB9;</p>
+<pre><code>helm install --dry-run mychart --debug
+</code></pre><h4 id="&#x5B89;&#x88C5;chart"><a name="&#x5B89;&#x88C5;chart" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;chart"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;chart</h4>
+<p>Helm&#x652F;&#x6301;&#x56DB;&#x79CD;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;</p>
+<p>1.&#x5B89;&#x88C5;&#x4ED3;&#x5E93;&#x4E2D;&#x7684;chart</p>
+<pre><code>helm install stable/nginx
+</code></pre><p>2.&#x901A;&#x8FC7;tar&#x5305;&#x5B89;&#x88C5;</p>
+<pre><code>helm install ./nginx-1.2.3.tgz
+</code></pre><p>3.&#x901A;&#x8FC7;chart&#x672C;&#x5730;&#x76EE;&#x5F55;&#x5B89;&#x88C5;</p>
+<pre><code>helm install ./nginx
+</code></pre><p>4.&#x901A;&#x8FC7;URL&#x5B89;&#x88C5;</p>
+<pre><code>helm install https://example.com/charts/nginx-1.2.3.tgz
+</code></pre><h4 id="&#x5C06;chart&#x6DFB;&#x52A0;&#x5230;&#x4ED3;&#x5E93;"><a name="&#x5C06;chart&#x6DFB;&#x52A0;&#x5230;&#x4ED3;&#x5E93;" class="anchor-navigation-ex-anchor" href="#&#x5C06;chart&#x6DFB;&#x52A0;&#x5230;&#x4ED3;&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C06;chart&#x6DFB;&#x52A0;&#x5230;&#x4ED3;&#x5E93;</h4>
+<p>&#x4EFB;&#x4F55;HTTP Server&#x90FD;&#x53EF;&#x4EE5;&#x7528;&#x4F5C;chart&#x4ED3;&#x5E93;</p>
+<p>&#x5728;k8s-node1&#x4E0A;&#x642D;&#x5EFA;&#x4ED3;&#x5E93;</p>
+<p>1.&#x5728;node1&#x4E0A;&#x542F;&#x52A8;httpd&#x5BB9;&#x5668;</p>
+<pre><code>mkdir /var/www
+docker run -d -p 8080:80 -v /var/www/:/usr/local/apache2/htdocs/ httpd
+</code></pre><p>2.helm package&#x5C06;mychart&#x6253;&#x5305;</p>
+<pre><code>helm package mychart
+</code></pre><p>3.&#x751F;&#x6210;&#x4ED3;&#x5E93;&#x7684;Index&#x6587;&#x4EF6;</p>
+<pre><code>mkdir myrepo
+mv mychart-0.1.0.tgz myrepo/
+helm repo index myrepo/ --url http://node1IP:8080/charts
+ls myrepo/
+</code></pre><p>Helm&#x4F1A;&#x626B;&#x63CF;myrepo&#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x6240;&#x6709;tgz&#x5305;&#x5E76;&#x751F;&#x6210;index.yaml</p>
+<p>--url&#x6307;&#x5B9A;&#x7684;&#x662F;&#x65B0;&#x4ED3;&#x5E93;&#x7684;&#x8BBF;&#x95EE;&#x8DEF;&#x5F84;&#x3002;</p>
+<p>&#x65B0;&#x751F;&#x6210;&#x7684;index.yaml&#x8BB0;&#x5F55;&#x4E86;&#x5F53;&#x524D;&#x4ED3;&#x5E93;&#x4E0B;&#x6240;&#x6709;chart&#x7684;&#x4FE1;&#x606F;</p>
+<p>4.&#x5C06;mychart-0.1.0.tgz&#x548C;index.yaml&#x4E0A;&#x4F20;&#x5230;k8s-node1&#x7684;/var/www/charts&#x76EE;&#x5F55;</p>
+<p>5.&#x901A;&#x8FC7;helm repo add&#x5C06;&#x65B0;&#x4ED3;&#x5E93;&#x6DFB;&#x52A0;&#x5230;Helm</p>
+<pre><code>helm repo add newrepo http://node1IP:8080/charts
+helm repo list
+</code></pre><p>6.&#x9664;&#x4E86;newrepo/mychart&#x8FD8;&#x6709;&#x4E00;&#x4E2A;local/mychart&#xFF0C;&#x5728;&#x6267;&#x884C;2&#x6253;&#x5305;&#x65F6;mychart&#x4E5F;&#x88AB;&#x540C;&#x6B65;&#x5230;local&#x7684;&#x4ED3;&#x5E93;</p>
+<pre><code>helm search mychart
+</code></pre><p>7.&#x76F4;&#x63A5;&#x4ECE;&#x65B0;&#x4ED3;&#x5E93;&#x5B89;&#x88C5;mychart</p>
+<pre><code>helm install newrepo/mychart
+</code></pre><p>8.&#x82E5;&#x4EE5;&#x540E;&#x6DFB;&#x52A0;&#x4E86;&#x65B0;&#x7684;chart,&#x53EF;&#x901A;&#x8FC7;helm repo update&#x66F4;&#x65B0;&#x672C;&#x5730;&#x7684;index.&#x76F8;&#x5F53;&#x4E8E;apt-get update</p>
+<pre><code>helm repo update
+</code></pre><footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <em>Dazzle Lin</em> </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2019-07-03 12:13:38 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../Chapter4/数据管理.html" class="navigation navigation-prev " aria-label="Previous page: 数据管理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../Chapter6/网络.html" class="navigation navigation-next " aria-label="Next page: 网络">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Helm-k8s的包管理工具","level":"1.7","depth":1,"next":{"title":"网络","level":"1.8","depth":1,"path":"Chapter6/网络.md","ref":"Chapter6/网络.md","articles":[]},"previous":{"title":"数据管理","level":"1.6","depth":1,"path":"Chapter4/数据管理.md","ref":"Chapter4/数据管理.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","search-pro","github","chapter-fold","code","copy-code-button","splitter","page-footer-ex","simple-page-toc","anchor-navigation-ex","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/linqinye"},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"page-footer-ex":{"copyright":"By <em>Dazzle Lin</em>","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Dazzle","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"编写docker学习笔记","language":"zh-hans","gitbook":"*","description":"编写docker学习笔记"},"file":{"path":"Chapter5/Helm-k8s的包管理工具.md","mtime":"2019-07-03T04:13:38.145Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T04:13:45.732Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
